@@ -13,14 +13,14 @@ export const siteConfig = {
   socialLinks: {
     twitter: "https://twitter.com/sachin1618",
     github: "https://github.com/sopac",
-    //discord: "https://discord.com",
+    discord: "https://discord.com",
   },
   navLinks: [
     { text: "Home", href: "/" },
     { text: "Legal AI", href: "/services" },
     { text: "FinTech", href: "/services" },
+    { text: "Document AI", href: "/services" },
     { text: "Earth Observations", href: "/services" },
-    { text: "Document Processing", href: "/services" },
     { text: "Custom AI Agents", href: "/services" },
     { text: "About", href: "/about" },
 
