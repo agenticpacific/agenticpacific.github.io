@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img"
+  aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Agentic Pacific icon with tagline, dark mode</title>
+  <desc id="logo-desc">Compact icon lockup for Agentic Pacific featuring the Pacific-centered globe
+    mark above the tagline AI-augmented Solutions and Services for the Pacific.</desc>
+
+  <defs>
+    <linearGradient id="ocean-gradient" x1="18%" y1="12%" x2="82%" y2="88%">
+      <stop offset="0%" stop-color="#0B3F5C" />
+      <stop offset="55%" stop-color="#058BC8" />
+      <stop offset="100%" stop-color="#041723" />
+    </linearGradient>
+    <radialGradient id="glow-gradient" cx="42%" cy="28%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.38" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="globe-clip">
+      <circle cx="160" cy="160" r="118" />
+    </clipPath>
+    <style>
+      .wordmark { font-family: 'Avenir Next', 'Segoe UI', Arial, sans-serif; fill: #F4FBFF; }
+      .tagline { font-family: 'Avenir Next', 'Segoe UI', Arial, sans-serif; fill: #B7D7E8;
+      letter-spacing: 0.35px; }
+      .land { fill: #D6F7FF; fill-opacity: 0.10; stroke: #E7FBFF; stroke-width: 2.2;
+      stroke-linejoin: round; stroke-linecap: round; }
+      .island { fill: #D6F7FF; fill-opacity: 0.10; stroke: #E7FBFF; stroke-width: 2.1;
+      stroke-linejoin: round; stroke-linecap: round; }
+      .grid { fill: none; stroke: #56BCE2; stroke-opacity: 0.42; stroke-width: 1.35; }
+      .network { fill: none; stroke: #78F4E8; stroke-width: 2.6; stroke-linecap: round;
+      stroke-linejoin: round; }
+      .node { fill: #FFD7CB; stroke: #FF9E7A; stroke-width: 1.4; }
+    </style>
+  </defs>
+  <g transform="translate(180 28) scale(1.12)">
+
+    <g id="globe-logo">
+      <circle cx="160" cy="160" r="126" fill="none" stroke="#7AD6FF" stroke-width="2.6"
+        stroke-opacity="0.8" />
+      <path d="M92 62 A126 126 0 0 1 230 57" fill="none" stroke="#FF9E7A" stroke-width="4.2"
+        stroke-linecap="round" />
+      <path d="M78 248 A126 126 0 0 0 222 271" fill="none" stroke="#FFE0D6" stroke-width="3"
+        stroke-linecap="round" opacity="0.9" />
+      <circle cx="160" cy="160" r="118" fill="url(#ocean-gradient)" />
+      <circle cx="160" cy="160" r="118" fill="url(#glow-gradient)" />
+      <g clip-path="url(#globe-clip)">
+        <ellipse class="grid" cx="160" cy="160" rx="114" ry="30" />
+        <ellipse class="grid" cx="160" cy="160" rx="114" ry="56" />
+        <ellipse class="grid" cx="160" cy="160" rx="114" ry="83" />
+        <ellipse class="grid" cx="160" cy="160" rx="34" ry="114" />
+        <ellipse class="grid" cx="160" cy="160" rx="68" ry="114" />
+        <ellipse class="grid" cx="160" cy="160" rx="96" ry="114" />
+        <path class="land"
+          d="M46 154 L63 140 L82 142 L95 156 L104 180 L99 204 L84 221 L62 220 L48 199 L42 174 Z" />
+        <path class="land" d="M83 118 L96 110 L114 114 L123 124 L116 132 L98 131 L88 126 Z" />
+        <path class="land"
+          d="M269 78 L284 88 L291 106 L286 122 L294 143 L290 165 L298 191 L292 218 L276 246 L264 238 L270 211 L260 182 L266 152 L259 127 L263 101 Z" />
+        <path class="land" d="M239 205 L246 208 L249 217 L243 225 L236 222 L235 212 Z" />
+        <path class="island" d="M122 124 L129 122 L134 128 L127 133 L121 130 Z" />
+        <path class="island" d="M133 129 L138 128 L142 132 L136 136 L131 134 Z" />
+        <path class="island" d="M141 154 L146 157 L145 166 L149 174 L145 181 L139 176 L140 166 Z" />
+        <path class="island" d="M141 196 L154 197 L151 202 L139 201 Z" />
+        <path class="island" d="M154 158 L166 159 L168 166 L160 170 L152 166 Z" />
+        <path class="island" d="M166 151 L177 153 L176 159 L168 160 L163 155 Z" />
+        <path class="island" d="M167 118 L173 118 L173 123 L167 123 Z" />
+        <path class="island" d="M193 141 L205 142 L201 148 L192 148 Z" />
+        <path class="island" d="M204 146 L210 147 L208 151 L202 151 Z" />
+        <path class="island" d="M183 194 L188 196 L187 202 L182 202 Z" />
+        <path class="island" d="M187 208 L192 209 L191 214 L186 214 Z" />
+        <path class="island" d="M191 221 L196 223 L195 228 L189 227 Z" />
+        <path class="island" d="M212 123 L217 124 L216 129 L211 129 Z" />
+        <path class="island" d="M219 112 L224 114 L223 119 L218 118 Z" />
+        <path class="island" d="M225 132 L230 133 L229 138 L224 138 Z" />
+        <path class="island" d="M232 144 L238 146 L236 151 L230 150 Z" />
+        <path class="island" d="M242 157 L247 159 L246 164 L240 164 Z" />
+        <path class="island" d="M240 66 L246 67 L244 72 L239 71 Z" />
+        <path class="island" d="M103 228 L109 230 L107 238 L101 236 Z" />
+        <path class="island" d="M112 250 L118 252 L116 260 L110 258 Z" />
+        <path class="network" d="M160 164 Q177 152 198 146" />
+        <path class="network" d="M160 164 Q148 155 142 169" />
+        <path class="network" d="M160 164 Q172 187 190 211" />
+        <path class="network" d="M160 164 Q189 151 224 126" />
+        <circle class="node" cx="160" cy="164" r="5.2" />
+        <circle class="node" cx="198" cy="146" r="3.8" />
+        <circle class="node" cx="142" cy="169" r="3.8" />
+        <circle class="node" cx="190" cy="211" r="3.8" />
+        <circle class="node" cx="224" cy="126" r="3.8" />
+      </g>
+      <circle cx="160" cy="160" r="118" fill="none" stroke="#E7FBFF" stroke-width="1.6"
+        stroke-opacity="0.38" />
+    </g>
+  </g>
+  <g transform="translate(360 410)">
+    <text class="wordmark" x="0" y="0" text-anchor="middle" font-size="72" font-weight="700">Agentic</text>
+    <text class="wordmark" x="0" y="84" text-anchor="middle" font-size="88" font-weight="800">Pacific</text>
+  </g>
+</svg>

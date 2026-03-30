@@ -28,6 +28,19 @@ const { container: containerClassProp = "" } = classes;
   animate={animate}
 >
   <div class="text-center">
+    <img
+      class="hero-logo hero-logo--dark"
+      style="display: block; margin-left: auto; margin-right: auto; width:100%; margin-top: -100px;"
+      src="agentic-pacific-logo-horizontal-dark.svg"
+      alt="Agentic Pacific Logo"
+    />
+    <img
+      class="hero-logo hero-logo--light"
+      style="display: block; margin-left: auto; margin-right: auto; width:100%; margin-top: -100px;"
+      src="agentic-pacific-logo-horizontal-light.svg"
+      alt="Agentic Pacific Logo"
+    />
+
     {
       tagline && (
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
@@ -78,3 +91,21 @@ const { container: containerClassProp = "" } = classes;
   </div>
   <slot />
 </WidgetWrapper>
+
+<style>
+  /* Default (light theme): show light logo, hide dark logo */
+  .hero-logo--dark {
+    display: none !important;
+  }
+  .hero-logo--light {
+    display: block !important;
+  }
+
+  /* Dark theme: show dark logo, hide light logo */
+  :root[data-theme="dark"] .hero-logo--dark {
+    display: block !important;
+  }
+  :root[data-theme="dark"] .hero-logo--light {
+    display: none !important;
+  }
+</style>
