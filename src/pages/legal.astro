@@ -1,0 +1,326 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/widgets/Content.astro";
+import Features from "@/components/widgets/Features.astro";
+import Content2 from "@/components/widgets/Content2.astro";
+import Values from "@/components/widgets/Values.astro";
+import ComparisonTable from "@/components/sections/ComparisonTable.astro";
+import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
+
+const metadata = {
+  title: "Legal AI",
+  description:
+    "A Fiji-focused legal research and drafting assistant with local deployment, direct citations, and court-ready source verification.",
+};
+
+const faqItems = [
+  {
+    title: "How is this different from a general LLM?",
+    description:
+      "General models generate plausible language. Agentic Pacific adds local legal corpora, retrieval, citations, and deployment controls so the system can answer with verified legal context.",
+  },
+  {
+    title: "How do we verify the answer?",
+    description:
+      "Every response can point back to the source material, including acts, bills, gazettes, and judgments, with browsable or downloadable PDFs for review.",
+  },
+  {
+    title: "Can it support drafting?",
+    description:
+      "Yes. It can generate first drafts for NDAs, employment contracts, service agreements, and policy summaries aligned to the Fiji legal framework.",
+  },
+  {
+    title: "What about confidentiality?",
+    description:
+      "The platform is designed around locally run models and private indexing so sensitive client data stays inside your own environment.",
+  },
+  {
+    title: "Can firms add their own precedents?",
+    description:
+      "Yes. Private precedents, templates, and internal memos can be indexed in partitioned collections alongside public law.",
+  },
+  {
+    title: "Why does this matter now?",
+    description:
+      "Recent legal-industry reporting shows AI is already accelerating research, document review, and drafting, but firms still require due diligence, transparency, and jurisdiction-specific quality controls.",
+  },
+];
+
+const legalCorpusStats = [
+  {
+    value: "1813",
+    label: "Laws and Legal Notices",
+    description:
+      "A broad primary corpus of legislative and notice material that can be surfaced directly inside legal workflows.",
+    accent: "from-blue-400 via-cyan-400 to-sky-500",
+    glow: "bg-blue-500/20",
+  },
+  {
+    value: "7309",
+    label: "Judgements",
+    description:
+      "A deep judgment library for retrieval, citation tracing, comparative analysis, and precedent-focused research.",
+    accent: "from-violet-400 via-fuchsia-400 to-pink-500",
+    glow: "bg-fuchsia-500/20",
+  },
+  {
+    value: "555",
+    label: "Bills",
+    description:
+      "Live legislative change can be tracked and summarized before it becomes operationally urgent for clients or agencies.",
+    accent: "from-emerald-400 via-teal-400 to-cyan-500",
+    glow: "bg-emerald-500/20",
+  },
+  {
+    value: "468",
+    label: "Acts",
+    description:
+      "Current acts can be linked into drafting, compliance review, and side-by-side analysis with related judgments.",
+    accent: "from-amber-300 via-orange-400 to-rose-500",
+    glow: "bg-orange-500/20",
+  },
+];
+
+const comparisonRows = [
+  {
+    label: "Data privacy",
+    values: [
+      "Absolute. All data and queries remain on your local hardware.",
+      "Data is processed on external infrastructure, often outside Fiji's jurisdiction.",
+    ],
+  },
+  {
+    label: "Legal context",
+    values: [
+      "Specifically indexed for Fiji acts, bills, gazettes, and court judgments.",
+      "Broad but typically lacks current local nuance and Pacific-specific legal context.",
+    ],
+  },
+  {
+    label: "Accuracy",
+    values: [
+      "Grounded retrieval constrains the answer to verified legal text.",
+      "Generative outputs can invent citations or overstate confidence.",
+    ],
+  },
+  {
+    label: "Verification",
+    values: [
+      "Direct citations with source documents and a visible audit trail.",
+      "Verification usually requires a separate manual search.",
+    ],
+  },
+  {
+    label: "Customization",
+    values: [
+      "Can extend to firm precedents, templates, and institutional knowledge.",
+      "Limited ability to securely reflect firm-specific style and knowledge.",
+    ],
+  },
+  {
+    label: "Connectivity",
+    values: [
+      "Designed for sovereign or limited-connectivity environments.",
+      "Depends on stable cloud access for both model and data processing.",
+    ],
+  },
+];
+
+const references = [
+  {
+    label: "LegalFly - A lawyer's guide to LLMs",
+    href: "https://www.legalfly.com/post/a-lawyers-guide-to-large-language-models-llms",
+    note: "Useful framing on hallucinations, prompting discipline, and why legal work needs more than a generic model.",
+  },
+  {
+    label: "Nature Humanities and Social Sciences Communications",
+    href: "https://www.nature.com/articles/s41599-025-05924-3",
+    note: "Overview of how LLMs are reshaping document preparation, legal research, and legal-service delivery.",
+  },
+  {
+    label: "Thomson Reuters - How AI is transforming the legal profession",
+    href: "https://legal.thomsonreuters.com/blog/how-ai-is-transforming-the-legal-profession/",
+    note: "Recent survey data on adoption, ROI, and the tasks where legal professionals are already using AI.",
+  },
+  {
+    label: "Harvard CLP - AI and law firm business models",
+    href: "https://clp.law.harvard.edu/knowledge-hub/insights/the-impact-of-artificial-intelligence-on-law-law-firms-business-models/",
+    note: "Discussion of productivity gains, quality shifts, and the implications for law-firm operating models.",
+  },
+];
+---
+
+<BaseLayout {metadata}>
+  <Content
+    tagline="Legal AI"
+    title="Intelligence grounded in Fiji law"
+    description={[
+      "The legal landscape of Fiji is intricate, spanning decades of acts, bills, subsidiary instruments, gazettes, and judgments. Agentic Pacific is designed as a high-precision legal research and drafting assistant for that environment.",
+      "Instead of acting like a black box, the system is built to surface the documents behind the answer so practitioners can verify reasoning, inspect the source, and keep client confidentiality intact.",
+    ]}
+    image="/illustrations/legal.svg"
+    imageAlt="Legal AI illustration"
+  />
+
+  <Features
+    tagline="Why Agentic Pacific"
+    title="A verified legal engine, not a generic chatbot"
+    subtitle="Legal teams need speed, but they also need source discipline, privacy, and outputs tailored to jurisdiction-specific practice."
+    features={[
+      {
+        title: "Comprehensive jurisprudence",
+        description:
+          "The retrieval layer can be indexed across Fiji legislation, active bills, and landmark judgments so answers stay anchored in local sources.",
+        icon: "lucide:library-big",
+        iconClass: "bg-blue-500/10 text-blue-400",
+      },
+      {
+        title: "Verification you can see",
+        description:
+          "Every response is designed to include direct citations and source visibility so teams can review court-ready references quickly.",
+        icon: "lucide:badge-check",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
+      },
+      {
+        title: "Privacy without compromise",
+        description:
+          "Local-first deployment with open-source models avoids cloud leakage and supports a stronger confidentiality posture.",
+        icon: "lucide:shield",
+        iconClass: "bg-purple-500/10 text-purple-400",
+      },
+    ]}
+  />
+
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
+      <div
+        class="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm"
+      >
+        <div class="relative px-6 py-10 md:px-10 md:py-12">
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.14),transparent_30%)]"
+          >
+          </div>
+          <div class="relative mx-auto max-w-3xl text-center">
+            <div
+              class="text-sm font-semibold uppercase tracking-[0.22em] text-primary"
+            >
+              Fiji legal corpus
+            </div>
+            <h2 class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+              The legal engine is backed by a visibly substantial source base
+            </h2>
+            <p class="mt-4 text-lg text-muted-foreground">
+              These are the headline corpus counts that power retrieval,
+              citation, drafting support, and comparative legal analysis.
+            </p>
+          </div>
+
+          <div
+            class="relative mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
+          >
+            {
+              legalCorpusStats.map((stat) => (
+                <div class="group relative overflow-hidden rounded-3xl border border-border bg-background/70 p-7 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div
+                    class={`absolute -right-10 -top-10 h-36 w-36 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-100 ${stat.glow} opacity-80`}
+                  ></div>
+                  <div class="relative">
+                    <div
+                      class={`bg-linear-to-r ${stat.accent} bg-clip-text text-6xl font-black tracking-tight text-transparent md:text-7xl`}
+                    >
+                      {stat.value}
+                    </div>
+                    <div class="mt-4 text-lg font-semibold text-foreground">
+                      {stat.label}
+                    </div>
+                    <p class="mt-3 text-sm leading-6 text-muted-foreground">
+                      {stat.description}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <div class="text-4xl font-bold text-primary">80%</div>
+          <p class="mt-3 text-muted-foreground">
+            of professionals in Thomson Reuters' 2025 report expect AI to have a
+            high or transformational impact on their work.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <div class="text-4xl font-bold text-primary">72%</div>
+          <p class="mt-3 text-muted-foreground">
+            view AI as a force for good in the legal profession when it is
+            implemented with the right safeguards.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+          <div class="text-4xl font-bold text-primary">240h</div>
+          <p class="mt-3 text-muted-foreground">
+            per legal professional per year could be reclaimed by accelerating
+            document review, research, and drafting tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Content2
+    tagline="From research to action"
+    title="Draft, summarize, compare, and explain"
+    description={[
+      "Agentic Pacific is intended to do more than retrieve legal text. It supports practical legal work by moving from evidence gathering into first-draft and advisory workflows.",
+    ]}
+    image="/illustrations/legal.svg"
+    imageAlt="Legal workflows illustration"
+    items={[
+      {
+        title: "Instant drafting",
+        description:
+          "Generate initial NDAs, employment agreements, service contracts, and internal briefing notes aligned to the Fiji legal framework.",
+      },
+      {
+        title: "Policy summarization",
+        description:
+          "Condense lengthy bills and new acts into executive summaries and issue briefs for quick review by partners or government teams.",
+      },
+      {
+        title: "Comparative analysis",
+        description:
+          "Identify shifts between past judgments, current legislation, and draft reforms in seconds instead of hours.",
+      },
+      {
+        title: "Firm knowledge extension",
+        description:
+          "Add private precedents and internal memoranda to create a partitioned institutional-memory layer for your own practice.",
+      },
+    ]}
+  />
+
+  <ComparisonTable
+    tagline="Comparison"
+    title="Agentic Pacific vs. standard cloud AI"
+    subtitle="For legal work, the real difference is not novelty. It is liability, verification, and whether the system respects privilege and jurisdictional specificity."
+    headers={["Feature", "Agentic Pacific (local RAG)", "Standard cloud AI"]}
+    rows={comparisonRows}
+  />
+
+  <Values
+    items={faqItems}
+    columns={3}
+    tagline="FAQ"
+    title="Questions legal teams ask first"
+    subtitle="The platform is designed to satisfy both practicing lawyers and the operational teams responsible for privacy and deployment."
+  />
+
+  <ReferenceLinks
+    links={references}
+    subtitle="These sources informed the page messaging around legal AI capabilities, adoption trends, confidentiality risks, and business-model implications."
+  />
+</BaseLayout>

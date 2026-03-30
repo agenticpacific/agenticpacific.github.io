@@ -1,0 +1,222 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/widgets/Content.astro";
+import Features from "@/components/widgets/Features.astro";
+import Content2 from "@/components/widgets/Content2.astro";
+import Values from "@/components/widgets/Values.astro";
+import ComparisonTable from "@/components/sections/ComparisonTable.astro";
+import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
+
+const metadata = {
+  title: "FinTech",
+  description:
+    "A local-first intelligence layer for enterprise files, CRMs, compliance workflows, and financial analysis.",
+};
+
+const faqItems = [
+  {
+    title: "How does it see our data?",
+    description:
+      "Through a secure indexing process using vector search, metadata, and connectors to enterprise systems without sending the underlying records to a public model.",
+  },
+  {
+    title: "Can it integrate with our CRM and file shares?",
+    description:
+      "Yes. The model layer can sit above standard enterprise repositories, documents, spreadsheets, and CRM histories to create a single query surface.",
+  },
+  {
+    title: "Is it a black box?",
+    description:
+      "No. Each answer can include file-level evidence and provenance so risk, compliance, and business teams can verify where an insight came from.",
+  },
+  {
+    title: "Where does it help most?",
+    description:
+      "Compliance oversight, AML and CTF review, customer-risk analysis, revenue discovery, and portfolio intelligence are high-value starting points.",
+  },
+  {
+    title: "Why local-first?",
+    description:
+      "Financial institutions need stronger data residency, privacy, and auditability than a third-party public chat workflow can usually provide.",
+  },
+  {
+    title: "What is the Fiji advantage?",
+    description:
+      "The system can encode local due-diligence nuance, reporting thresholds, and sovereign hosting requirements rather than relying on generic global assumptions.",
+  },
+];
+
+const comparisonRows = [
+  {
+    label: "Data privacy",
+    values: [
+      "Local and sovereign. Sensitive files stay on internal infrastructure.",
+      "Data is processed on third-party servers outside the institution's perimeter.",
+    ],
+  },
+  {
+    label: "Data integration",
+    values: [
+      "Indexes CRMs, file shares, onboarding packs, PDFs, spreadsheets, and legacy records.",
+      "Usually limited to the small set of files a user uploads into chat.",
+    ],
+  },
+  {
+    label: "Regulatory fit",
+    values: [
+      "Designed for data residency, auditability, and compliance workflows.",
+      "Often fails internal security review for sensitive operational data.",
+    ],
+  },
+  {
+    label: "Source tracking",
+    values: [
+      "Every insight can be cited back to the source file or record.",
+      "Outputs may summarize well but usually lack a full evidence chain.",
+    ],
+  },
+  {
+    label: "Custom intelligence",
+    values: [
+      "Built around the institution's actual internal knowledge and operating constraints.",
+      "Remains generic and disconnected from enterprise memory.",
+    ],
+  },
+];
+
+const references = [
+  {
+    label: "IBM - AI in FinTech",
+    href: "https://www.ibm.com/think/topics/ai-in-fintech",
+    note: "Background on AI use cases in risk, fraud detection, assistants, underwriting, and operational efficiency.",
+  },
+  {
+    label: "Investopedia - FinTech",
+    href: "https://www.investopedia.com/terms/f/fintech.asp",
+    note: "General framing of the FinTech domain and how digital platforms transform financial services.",
+  },
+];
+---
+
+<BaseLayout {metadata}>
+  <Content
+    tagline="FinTech"
+    title="Financial intelligence without boundaries"
+    description={[
+      "Modern financial institutions do not have a data shortage. They have a data graveyard. Critical insight sits across file shares, CRM notes, onboarding packs, spreadsheets, and long-tail reports that are too fragmented to search well.",
+      "Agentic Pacific turns that fragmented estate into a retrieval-backed intelligence layer for analysis, oversight, and decision support while keeping sensitive data under institutional control.",
+    ]}
+    image="/illustrations/fintech.svg"
+    imageAlt="FinTech intelligence illustration"
+  />
+
+  <Features
+    tagline="The engine"
+    title="Designed for enterprise financial workflows"
+    subtitle="The platform focuses on synthesis, oversight, and privacy rather than one-off chat responses."
+    features={[
+      {
+        title: "Unified enterprise intelligence",
+        description:
+          "Index and query spreadsheets, PDF reports, CRM histories, onboarding files, and communications from a single natural-language interface.",
+        icon: "lucide:network",
+        iconClass: "bg-blue-500/10 text-blue-400",
+      },
+      {
+        title: "Absolute privacy and compliance",
+        description:
+          "Local LLM execution and private vector infrastructure help satisfy internal audit, sovereignty, and data-residency requirements.",
+        icon: "lucide:lock-keyhole",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
+      },
+      {
+        title: "Actionable analysis",
+        description:
+          "Move beyond search and ask comparative, cross-system questions that surface hidden risk and opportunity.",
+        icon: "lucide:chart-column-big",
+        iconClass: "bg-cyan-500/10 text-cyan-400",
+      },
+    ]}
+  />
+
+  <Content2
+    tagline="Use cases"
+    title="Compliance oversight and operational intelligence"
+    description={[
+      "The same retrieval engine can support both risk controls and revenue discovery, giving compliance, operations, and relationship teams a shared intelligence layer.",
+    ]}
+    image="/illustrations/fintech.svg"
+    imageAlt="FinTech use cases illustration"
+    items={[
+      {
+        title: "Automated AML and CTF review",
+        description:
+          "Correlate transaction activity with CRM notes, onboarding packs, and internal communication to surface suspicious patterns faster.",
+      },
+      {
+        title: "PEP and sanctions contextualization",
+        description:
+          "Scan unstructured KYC material to flag higher-risk entities and capture the exact evidence supporting the flag.",
+      },
+      {
+        title: "Natural-language portfolio analysis",
+        description:
+          "Query for product gaps, client intent signals, or churn markers hidden inside years of operational records.",
+      },
+      {
+        title: "Institutional memory",
+        description:
+          "Preserve relationship history so teams can understand the background of a client or account without manual handover.",
+      },
+    ]}
+  />
+
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div
+      class="relative mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3 md:px-6 md:py-12"
+    >
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">60-80%</div>
+        <p class="mt-3 text-muted-foreground">
+          Reduction in compliance review time for the AML and CTF workflow
+          described in the use case brief.
+        </p>
+      </div>
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">100%</div>
+        <p class="mt-3 text-muted-foreground">
+          Indexed-file coverage means oversight can move beyond manual sampling
+          and into universal monitoring.
+        </p>
+      </div>
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">24/7</div>
+        <p class="mt-3 text-muted-foreground">
+          A retrieval-backed system can keep scanning context across silos even
+          when teams are not manually reviewing records.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ComparisonTable
+    tagline="Comparison"
+    title="Agentic Pacific vs. traditional cloud AI"
+    subtitle="For finance teams, the key distinction is whether the system can access enterprise context while preserving compliance and source traceability."
+    headers={["Feature", "Agentic Pacific (FinTech RAG)", "Standard cloud AI"]}
+    rows={comparisonRows}
+  />
+
+  <Values
+    items={faqItems}
+    columns={3}
+    tagline="FAQ"
+    title="What financial institutions usually need to know"
+    subtitle="The platform is designed to fit regulated environments where privacy, audit trails, and integration depth matter as much as model quality."
+  />
+
+  <ReferenceLinks
+    links={references}
+    subtitle="These references informed the sector framing around FinTech, AI-driven financial automation, and enterprise operating use cases."
+  />
+</BaseLayout>

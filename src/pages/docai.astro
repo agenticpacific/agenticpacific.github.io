@@ -1,0 +1,136 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/widgets/Content.astro";
+import Features from "@/components/widgets/Features.astro";
+import Content2 from "@/components/widgets/Content2.astro";
+import Values from "@/components/widgets/Values.astro";
+import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
+
+const metadata = {
+  title: "Document AI",
+  description:
+    "Document AI for enterprise file shares, CRMs, and data systems with OCR, NLP, parsing, and workflow automation.",
+};
+
+const useCases = [
+  {
+    title: "Legal and compliance review",
+    description:
+      "Analyze contracts, identify key clauses, summarize long legal text, and flag irregularities across large document sets.",
+    icon: "lucide:file-badge",
+  },
+  {
+    title: "Finance and accounting ops",
+    description:
+      "Parse invoices, receipts, IDs, tax forms, and customer communications to improve accuracy, throughput, and fraud detection.",
+    icon: "lucide:receipt-text",
+  },
+  {
+    title: "Insurance and healthcare workflows",
+    description:
+      "Extract intake, claims, and trial data from semistructured and unstructured documents to reduce administrative overhead.",
+    icon: "lucide:shield-plus",
+  },
+  {
+    title: "Publishing and digitization",
+    description:
+      "Convert physical archives and documents into searchable digital collections for knowledge reuse and retrieval.",
+    icon: "lucide:book-copy",
+  },
+];
+
+const references = [
+  {
+    label: "IBM - What is document AI?",
+    href: "https://www.ibm.com/think/topics/document-ai",
+    note: "Source material on OCR, NLP, metadata, parsers, APIs, generative AI enhancements, and document-driven enterprise workflows.",
+  },
+];
+---
+
+<BaseLayout {metadata}>
+  <Content
+    tagline="Document AI"
+    title="Turn enterprise documents into usable intelligence"
+    description={[
+      "Agentic Pacific helps organizations uncover hidden and untapped information within enterprise file shares, CRMs, and data systems for unprecedented analysis and oversight.",
+      "Instead of treating documents as static files, Document AI turns them into searchable, structured, and workflow-ready assets that can feed operations, compliance, customer support, and analytics.",
+    ]}
+    image="/illustrations/docai.svg"
+    imageAlt="Document AI illustration"
+  />
+
+  <Features
+    tagline="How it works"
+    title="From OCR to contextual understanding"
+    subtitle="IBM's overview of Document AI highlights a layered stack: character recognition, language understanding, parsing, metadata, and workflow integration."
+    features={[
+      {
+        title: "OCR plus NLP",
+        description:
+          "Optical character recognition reads PDFs, scans, forms, and handwritten text, while NLP interprets meaning, relationships, names, dates, and context.",
+        icon: "lucide:scan-text",
+        iconClass: "bg-blue-500/10 text-blue-400",
+      },
+      {
+        title: "Parsers, processors, and metadata",
+        description:
+          "Document AI can classify, split, parse, and organize semistructured material while using metadata to improve retrieval and workflow quality.",
+        icon: "lucide:braces",
+        iconClass: "bg-purple-500/10 text-purple-400",
+      },
+      {
+        title: "APIs and automation",
+        description:
+          "APIs connect the models to enterprise systems so extracted information can immediately support downstream processes.",
+        icon: "lucide:plug-zap",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
+      },
+    ]}
+  />
+
+  <Content2
+    tagline="Enterprise value"
+    title="Search less, understand more, automate sooner"
+    description={[
+      "Traditional document work is slow because important signals are locked inside messy layouts, scanned pages, attachments, and inconsistent naming. Document AI reduces that friction by turning documents into structured context that other systems can reason over.",
+    ]}
+    image="/illustrations/docai.svg"
+    imageAlt="Document AI enterprise value illustration"
+    items={[
+      {
+        title: "Handle every document shape",
+        description:
+          "Work across structured spreadsheets, unstructured contracts and emails, and semistructured invoices, forms, and financial reports.",
+      },
+      {
+        title: "Summaries and drafting",
+        description:
+          "Modern systems can go beyond extraction to produce concise summaries and help draft follow-up actions from the extracted facts.",
+      },
+      {
+        title: "Fine-tuned for your domain",
+        description:
+          "Specialized jargon, layouts, or compliance rules can be reflected in tuned processors and prompts for higher accuracy.",
+      },
+      {
+        title: "Workflow acceleration",
+        description:
+          "Once data is extracted and normalized, organizations can feed it into approvals, audit reviews, case management, or operational dashboards.",
+      },
+    ]}
+  />
+
+  <Values
+    items={useCases}
+    columns={2}
+    tagline="Use cases"
+    title="Where Document AI fits immediately"
+    subtitle="The same stack can support legal, operational, and administrative work wherever documents are dense, high-volume, and important to decision-making."
+  />
+
+  <ReferenceLinks
+    links={references}
+    subtitle="This page is grounded in IBM's explanation of document intelligence technologies and enterprise use cases."
+  />
+</BaseLayout>

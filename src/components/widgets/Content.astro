@@ -40,13 +40,21 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
       }}
     />
     {
-      image && (
-        <Image
-          src={image}
-          alt={imageAlt}
-          class="rounded-3xl shadow-2xl mx-auto mt-6 border border-border/50 aspect-video object-cover"
-        />
-      )
+      image &&
+        (typeof image === "string" ? (
+          <img
+            src={image}
+            alt={imageAlt}
+            loading="lazy"
+            class="rounded-3xl shadow-2xl mx-auto mt-6 border border-border/50 aspect-video object-cover"
+          />
+        ) : (
+          <Image
+            src={image}
+            alt={imageAlt}
+            class="rounded-3xl shadow-2xl mx-auto mt-6 border border-border/50 aspect-video object-cover"
+          />
+        ))
     }
     <slot />
   </div>

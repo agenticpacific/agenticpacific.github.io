@@ -1,0 +1,68 @@
+---
+import WidgetWrapper from "@/components/widgets/WidgetWrapper.astro";
+import Headline from "@/components/ui/Headline.astro";
+
+interface LinkItem {
+  label: string;
+  href: string;
+  note?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  links: LinkItem[];
+  classes?: Record<string, string>;
+}
+
+const {
+  title = "References",
+  subtitle,
+  tagline = "Sources",
+  links = [],
+  classes = {},
+} = Astro.props as Props;
+
+const { container: containerClassProp = "", ...otherClasses } = classes;
+---
+
+<WidgetWrapper
+  containerClass={`max-w-7xl mx-auto ${containerClassProp}`}
+  classes={otherClasses}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: "max-w-3xl mx-auto text-center",
+    }}
+  />
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
+        >
+          <div class="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            Source
+          </div>
+          <div class="mt-2 text-lg font-semibold text-foreground">
+            {link.label}
+          </div>
+          {link.note && (
+            <p class="mt-2 text-sm text-muted-foreground">{link.note}</p>
+          )}
+          <div class="mt-4 text-sm font-medium text-primary">
+            Open reference {"->"}
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</WidgetWrapper>

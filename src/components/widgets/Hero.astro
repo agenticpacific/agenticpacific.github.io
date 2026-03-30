@@ -28,30 +28,19 @@ const { container: containerClassProp = "" } = classes;
   animate={animate}
 >
   <div class="text-center">
-    <img
-      class="hero-logo hero-logo--dark"
-      style="display: block; margin-left: auto; margin-right: auto; width:100%; margin-top: -100px;"
-      src="agentic-pacific-logo-horizontal-dark.svg"
-      alt="Agentic Pacific Logo"
-    />
-    <img
-      class="hero-logo hero-logo--light"
-      style="display: block; margin-left: auto; margin-right: auto; width:100%; margin-top: -100px;"
-      src="agentic-pacific-logo-horizontal-light.svg"
-      alt="Agentic Pacific Logo"
-    />
+    <div class="hero-logo-wrap">
+      <img
+        class="hero-logo hero-logo--dark"
+        src="/agentic-pacific-logo-horizontal-dark.svg"
+        alt="Agentic Pacific Logo"
+      />
+      <img
+        class="hero-logo hero-logo--light"
+        src="/agentic-pacific-logo-horizontal-light.svg"
+        alt="Agentic Pacific Logo"
+      />
+    </div>
 
-    {
-      tagline && (
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-          <span class="relative flex h-2 w-2" aria-hidden="true">
-            <span class="absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75 animate-ping motion-reduce:animate-none" />
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-          </span>
-          {tagline}
-        </div>
-      )
-    }
     {
       (title || description) && (
         <Headline
@@ -61,8 +50,9 @@ const { container: containerClassProp = "" } = classes;
           classes={{
             container: "mb-0 max-w-none",
             title:
-              "text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6",
-            subtitle: "max-w-2xl mx-auto text-xl text-muted-foreground mb-10",
+              "text-4xl md:text-6xl font-extrabold tracking-tight text-foreground mb-4",
+            subtitle:
+              "max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8",
           }}
         />
       )
@@ -88,11 +78,41 @@ const { container: containerClassProp = "" } = classes;
           ))
       }
     </div>
+    {
+      tagline && (
+        <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          <span class="relative flex h-2 w-2" aria-hidden="true">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75 animate-ping motion-reduce:animate-none" />
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+          </span>
+          {tagline}
+        </div>
+      )
+    }
   </div>
   <slot />
 </WidgetWrapper>
 
 <style>
+  .hero-logo-wrap {
+    width: 100%;
+    margin: 0 auto 1rem;
+    padding-inline: 0;
+    margin-top: clamp(-3rem, -7vw, -1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-logo {
+    display: block;
+    width: min(96vw, 72rem);
+    height: auto;
+    max-height: clamp(9rem, 34vw, 20rem);
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
   /* Default (light theme): show light logo, hide dark logo */
   .hero-logo--dark {
     display: none !important;
@@ -107,5 +127,14 @@ const { container: containerClassProp = "" } = classes;
   }
   :root[data-theme="dark"] .hero-logo--light {
     display: none !important;
+  }
+
+  @media (min-width: 640px) {
+    .hero-logo-wrap {
+      width: 100%;
+      margin-bottom: 1.75rem;
+      padding-inline: 0;
+      margin-top: clamp(-5rem, -7vw, -2rem);
+    }
   }
 </style>

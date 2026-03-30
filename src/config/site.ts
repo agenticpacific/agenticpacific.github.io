@@ -1,31 +1,27 @@
 import ogImage from "@/assets/og-image.png";
 
 export const siteConfig = {
-  name: "Agentic Pacific (FJ)",
+  name: "Agentic Pacific",
   description:
-    "AI-Augmented Solutions and Services to Enable the Growing Knowledge Sector of the Pacific Islands.",
+    "AI-augmented solutions for Pacific legal, financial, document, and geospatial knowledge work.",
   url: "https://agenticpacific.github.io",
   lang: "en",
   locale: "en_US",
-  author: "Sachindra Singh",
+  author: "Agentic Pacific",
   twitter: "@sachin1618",
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com/sachin1618",
     github: "https://github.com/sopac",
-    discord: "https://discord.com",
+    email: "mailto:agentic.pacific@icloud.com",
   },
   navLinks: [
     { text: "Home", href: "/" },
-    { text: "Legal AI", href: "/services" },
-    { text: "FinTech", href: "/services" },
-    { text: "Document AI", href: "/services" },
-    { text: "Earth Observations", href: "/services" },
-    { text: "Custom AI Agents", href: "/services" },
+    { text: "Legal AI", href: "/legal" },
+    { text: "FinTech", href: "/fintech" },
+    { text: "Document AI", href: "/docai" },
+    { text: "Earth Observations", href: "/eo" },
+    { text: "Custom AI Agents", href: "/custom" },
     { text: "About", href: "/about" },
-
-    // { text: "Blog", href: "/blog" },
-    // { text: "Contact", href: "/contact" },
-    // { text: "Widgets", href: "/widgets" },
   ],
 };

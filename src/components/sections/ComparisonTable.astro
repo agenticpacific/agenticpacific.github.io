@@ -1,0 +1,79 @@
+---
+import WidgetWrapper from "@/components/widgets/WidgetWrapper.astro";
+import Headline from "@/components/ui/Headline.astro";
+
+interface Row {
+  label: string;
+  values: string[];
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  tagline?: string;
+  headers: string[];
+  rows: Row[];
+  classes?: Record<string, string>;
+}
+
+const {
+  title,
+  subtitle,
+  tagline,
+  headers = [],
+  rows = [],
+  classes = {},
+} = Astro.props as Props;
+
+const { container: containerClassProp = "", ...otherClasses } = classes;
+---
+
+<WidgetWrapper
+  containerClass={`max-w-7xl mx-auto ${containerClassProp}`}
+  classes={otherClasses}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: "max-w-3xl mx-auto text-center",
+    }}
+  />
+
+  <div
+    class="overflow-hidden rounded-3xl border border-border bg-card shadow-sm"
+  >
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-border text-sm md:text-base">
+        <thead class="bg-muted/70">
+          <tr>
+            {
+              headers.map((header) => (
+                <th class="px-6 py-4 text-left font-semibold text-foreground">
+                  {header}
+                </th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          {
+            rows.map((row) => (
+              <tr>
+                <td class="px-6 py-5 font-semibold text-foreground align-top">
+                  {row.label}
+                </td>
+                {row.values.map((value) => (
+                  <td class="px-6 py-5 text-muted-foreground align-top whitespace-pre-line">
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</WidgetWrapper>

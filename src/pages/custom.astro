@@ -1,0 +1,153 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/widgets/Content.astro";
+import Features from "@/components/widgets/Features.astro";
+import Content2 from "@/components/widgets/Content2.astro";
+import Values from "@/components/widgets/Values.astro";
+import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
+
+const metadata = {
+  title: "Custom AI Agents",
+  description:
+    "Custom multi-agent systems that reason, use tools, connect to enterprise systems, and operate with governance.",
+};
+
+const examples = [
+  {
+    title: "Data and analytics agents",
+    description:
+      "Real-world examples such as Uber's Finch and Salesforce's Horizon show how agent systems can turn natural language into structured analytics workflows.",
+    icon: "lucide:database",
+  },
+  {
+    title: "Knowledge work agents",
+    description:
+      "Dropbox Dash, Airtable Field Agents, and Moveworks illustrate how agents can summarize, retrieve, plan, and execute across enterprise knowledge stores.",
+    icon: "lucide:files",
+  },
+  {
+    title: "Operations and sales agents",
+    description:
+      "Examples highlighted by Evidently include Netguru's sales agent and Intercom's voice agent, each connected to live tools and business systems.",
+    icon: "lucide:briefcase",
+  },
+  {
+    title: "Business outcomes",
+    description:
+      "MTLC highlights outcomes such as faster decision-making, lower operating cost, fewer manual errors, and improved cross-team coordination.",
+    icon: "lucide:trending-up",
+  },
+  {
+    title: "Guardrails and monitoring",
+    description:
+      "High-performing agents need routing tests, end-to-end validation, confidence checks, post-processing guardrails, and continuous evaluation.",
+    icon: "lucide:shield-check",
+  },
+  {
+    title: "Multi-agent collaboration",
+    description:
+      "The strongest systems break complex work into specialist roles - planners, critics, workers, and tool-using subagents - rather than overloading a single model call.",
+    icon: "lucide:git-pull-request-arrow",
+  },
+];
+
+const references = [
+  {
+    label: "Evidently AI - 10 AI agent examples",
+    href: "https://www.evidentlyai.com/blog/ai-agents-examples",
+    note: "Examples spanning finance, research, knowledge work, customer support, and operational automation with strong emphasis on evaluation patterns.",
+  },
+  {
+    label: "MTLC - 12 real-world AI agents for business",
+    href: "https://www.mtlc.co/the-best-ai-agents-for-business-12-real-world-examples/",
+    note: "Overview of agent types, business outcomes, capabilities, limitations, and governance considerations.",
+  },
+];
+---
+
+<BaseLayout {metadata}>
+  <Content
+    tagline="Custom AI Agents"
+    title="Agent systems that plan, act, and verify"
+    description={[
+      "AI agents are not just chat interfaces. They are software systems that can understand context, plan multi-step work, use tools and APIs, and execute tasks with limited human oversight.",
+      "Agentic Pacific designs custom agent systems for organizations that need domain-specific workflows, enterprise integrations, and stronger control over quality, privacy, and operational behavior.",
+    ]}
+    image="/illustrations/custom.svg"
+    imageAlt="Custom AI agents illustration"
+  />
+
+  <Features
+    tagline="Architecture"
+    title="What separates an agent from a prompt"
+    subtitle="Across the real-world examples collected by Evidently, the pattern is consistent: orchestration, tool use, specialized roles, and evaluation."
+    features={[
+      {
+        title: "Planning and reasoning",
+        description:
+          "Agents can decompose requests into steps, choose tools, and revise their path rather than returning a single-shot completion.",
+        icon: "lucide:route",
+        iconClass: "bg-blue-500/10 text-blue-400",
+      },
+      {
+        title: "Tool-connected execution",
+        description:
+          "They connect to Slack, CRMs, file systems, SQL engines, search tools, and internal APIs to act on real operational context.",
+        icon: "lucide:wrench",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
+      },
+      {
+        title: "Evaluation and governance",
+        description:
+          "Production systems need routing tests, end-to-end validation, confidence scores, latency management, and safety guardrails.",
+        icon: "lucide:clipboard-check",
+        iconClass: "bg-purple-500/10 text-purple-400",
+      },
+    ]}
+  />
+
+  <Content2
+    tagline="Business impact"
+    title="Built for real workflows, not novelty"
+    description={[
+      "MTLC's survey of business use cases frames AI agents as a way to accelerate decision-making, improve workflow efficiency, reduce repetitive cost, and coordinate work across systems.",
+    ]}
+    image="/illustrations/custom.svg"
+    imageAlt="Business impact illustration"
+    items={[
+      {
+        title: "40-60% faster decision-making",
+        description:
+          "Automated data analysis and context retrieval can materially speed up internal decision cycles when the agent has access to the right systems.",
+      },
+      {
+        title: "25-50% workflow efficiency gains",
+        description:
+          "Agents can coordinate multi-step task execution across departments rather than relying on manual handoffs.",
+      },
+      {
+        title: "30% fewer human errors",
+        description:
+          "Well-designed agents reduce repetitive manual processing while preserving review points and traceability.",
+      },
+      {
+        title: "Limits still matter",
+        description:
+          "Feedback loops, compute cost, security exposure, and poor coordination in multi-agent systems remain real failure modes without strong design.",
+      },
+    ]}
+  />
+
+  <Values
+    items={examples}
+    columns={3}
+    tagline="Examples and patterns"
+    title="How custom agents show up in practice"
+    subtitle="The current market examples suggest a clear pattern: the best systems are deeply integrated, narrowly scoped, and heavily evaluated."
+  />
+
+  <ReferenceLinks
+    links={references}
+    subtitle="These references informed the page copy on real-world architectures, business outcomes, and the operational constraints of deploying agents."
+  />
+</BaseLayout>

@@ -3,132 +3,190 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { siteConfig } from "@/config/site";
 import Hero from "@/components/widgets/Hero.astro";
 import Features from "@/components/widgets/Features.astro";
-import devImg from "@/assets/images/dev_balanced.png";
-import openSourceImg from "@/assets/images/open-source.png";
 import Content2 from "@/components/widgets/Content2.astro";
+import Card from "@/components/ui/Card.astro";
+import { Icon } from "astro-icon/components";
+
 const metadata = {
-  title: `${siteConfig.name}`,
+  title: siteConfig.name,
   description:
-    "AI-Augmented Solutions and Services to Enable the Growing Knowledge Sector of the Pacific Islands.",
+    "Agentic Pacific provisions AI-augmented solutions for Pacific legal, financial, document, and geospatial knowledge work.",
   ignoreTitleTemplate: true,
 };
+
+const sectorCards = [
+  {
+    title: "Legal AI",
+    href: "/legal",
+    icon: "lucide:scale",
+    description:
+      "Verified legal research and drafting grounded in Fiji acts, bills, and judgments.",
+  },
+  {
+    title: "FinTech",
+    href: "/fintech",
+    icon: "lucide:landmark",
+    description:
+      "Enterprise search, compliance oversight, and dark-data analysis for financial institutions.",
+  },
+  {
+    title: "Document AI",
+    href: "/docai",
+    icon: "lucide:file-search",
+    description:
+      "OCR, NLP, metadata, and workflow automation across file shares, CRMs, and business systems.",
+  },
+  {
+    title: "Earth Observations",
+    href: "/eo",
+    icon: "lucide:satellite",
+    description:
+      "Embeddings-based geospatial intelligence for climate, land, and infrastructure decisions.",
+  },
+  {
+    title: "Custom AI Agents",
+    href: "/custom",
+    icon: "lucide:bot",
+    description:
+      "Multi-agent systems that plan, act, verify, and integrate with your operational tools.",
+  },
+  {
+    title: "About",
+    href: "/about",
+    icon: "lucide:briefcase-business",
+    description:
+      "An overview of Agentic Pacific services, products, delivery capability, and contact options.",
+  },
+];
 ---
 
 <BaseLayout {metadata}>
   <Hero
-    title={`Agentic AI Solutions<br class="hidden md:block" /> <span class="bg-linear-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">Specialised Pacific Context</span>`}
+    title={`Agentic AI Solution<br class="hidden md:block" /> <span class="bg-linear-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Engineered for the Pacific Context</span>`}
     tagline="Legal AI Services + FinTech Solutions + Earth Observations + Document Processing + Custom AI Agents"
-    description={`${siteConfig.description}`}
+    description="Agentic Pacific offers AI-enhanced solutions and services to support the expanding knowledge sector in the Pacific Islands. Our expertise lies in AI context engineering for local specialised domains, such as legal and finance AI services, resource management using earth observations and spatial machine learning.
+"
     actions={[
       {
-        text: "Get Started",
-        href: "https://github.com/devgelo-labs/astro-starter-pro",
+        text: "Explore Legal AI",
+        href: "/legal",
         variant: "primary",
-        icon: "lucide:github",
+        icon: "lucide:scale",
       },
       {
-        text: "Our Services",
-        href: "/services",
+        text: "See capabilities",
+        href: "/about",
         variant: "secondary",
         icon: "lucide:arrow-right",
-        ariaLabel: "Learn more about our services",
+        ariaLabel: "See Agentic Pacific capabilities",
       },
     ]}
   />
+
   <Features
-    tagline="Features"
-    title="What's Included"
-    subtitle="A selection of tools and configurations to streamline your workflow."
+    tagline="Core strengths"
+    title="Built for high-context Pacific workflows"
+    subtitle="We pair modern AI systems with local domain grounding, transparent retrieval, and production-ready delivery patterns."
     features={[
       {
-        title: "Optimized SEO",
+        title: "Context engineering",
         description:
-          "Base configuration for Meta tags, Open Graph, and Sitemap generation.",
-        icon: "lucide:scan-search",
+          "We structure domain knowledge, policies, and edge cases so models respond with the nuance your environment actually requires.",
+        icon: "lucide:brain-circuit",
         iconClass: "bg-blue-500/10 text-blue-400",
       },
       {
-        title: "High Performance",
-        description: "Lightweight structure for fast load times.",
-        icon: "lucide:zap",
-        iconClass: "bg-purple-500/10 text-purple-400",
+        title: "Sovereign AI architecture",
+        description:
+          "Local-first and private deployments keep sensitive legal, financial, and institutional data under your control.",
+        icon: "lucide:shield-check",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
       },
       {
-        title: "Tailwind v4",
+        title: "Cloud-native delivery",
         description:
-          "Integrated configuration with the latest version of Tailwind CSS.",
-        icon: "lucide:palette",
-        iconClass: "bg-pink-500/10 text-pink-400",
+          "We package retrieval pipelines, observability, APIs, and user-facing workflows into maintainable production systems.",
+        icon: "lucide:cloud-cog",
+        iconClass: "bg-purple-500/10 text-purple-400",
       },
     ]}
   />
+
   <Content2
-    items={[
-      {
-        title: "Responsive Design",
-        description:
-          "Base configuration for Meta tags, Open Graph, and Sitemap generation.",
-        icon: "lucide:scan-search",
-        iconClass: "bg-blue-500/10 text-blue-400",
-      },
-      {
-        title: "High Performance",
-        description: "Lightweight structure for fast load times.",
-        icon: "lucide:zap",
-        iconClass: "bg-purple-500/10 text-purple-400",
-      },
-      {
-        title: "Tailwind v4",
-        description:
-          "Integrated configuration with the latest version of Tailwind CSS.",
-        icon: "lucide:palette",
-        iconClass: "bg-pink-500/10 text-pink-400",
-      },
+    tagline="Delivery model"
+    title="From promising demos to operational systems"
+    description={[
+      "Many enterprise AI rollouts fail at the exact point where business rules, tenant-specific configuration, and approval logic become messy. The result is a polished prototype that still needs a human expert to finish every high-stakes workflow.",
+      "Agentic Pacific focuses on that final stretch. We combine retrieval, workflow orchestration, local context, and evaluation so the system can deliver complete outcomes rather than generic suggestions.",
     ]}
-    image={devImg}
-    imageAlt="Development"
-  >
-    <Fragment>
-      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-        Development
-      </h3>
-      We provide a solid foundation to start your projects with best practices.
-    </Fragment>
-  </Content2>
-  <Content2
+    image="/illustrations/home.svg"
+    imageAlt="Agentic Pacific platform illustration"
     items={[
       {
-        title: "Open Source",
+        title: "Edge-case aware",
         description:
-          "Developed under the MIT license, free for personal and commercial use.",
-        icon: "lucide:github",
+          "We design for the exceptions, policy carve-outs, and jurisdictional nuances that generic models usually miss.",
+        icon: "lucide:git-branch-plus",
+        iconClass: "bg-cyan-500/10 text-cyan-400",
+      },
+      {
+        title: "Evidence linked",
+        description:
+          "Responses can be grounded in source files, legal texts, enterprise records, or geospatial datasets with a visible audit trail.",
+        icon: "lucide:link-2",
         iconClass: "bg-indigo-500/10 text-indigo-400",
       },
       {
-        title: "Community Driven",
+        title: "Production-minded",
         description:
-          "Built with the feedback and contributions of the developer community.",
-        icon: "lucide:users",
-        iconClass: "bg-orange-500/10 text-orange-400",
-      },
-      {
-        title: "Regular Updates",
-        description:
-          "Continuously improved with the latest technologies and best practices.",
-        icon: "lucide:refresh-cw",
+          "We build with storage, vector search, APIs, governance, and user experience in mind from the start.",
+        icon: "lucide:server-cog",
         iconClass: "bg-teal-500/10 text-teal-400",
       },
     ]}
-    image={openSourceImg}
-    imageAlt="Community and Open Source"
-    isReversed={true}
-  >
-    <Fragment>
-      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-        Open Source & Community
-      </h3>
-      Join the revolution of modern web development. This project is open for everyone
-      to use, learn from, and contribute to.
-    </Fragment>
-  </Content2>
+  />
+
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-3xl text-center">
+        <div
+          class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
+        >
+          Sector pages
+        </div>
+        <h2 class="text-4xl font-bold tracking-tight md:text-5xl">
+          Explore the Agentic Pacific solution tracks
+        </h2>
+        <p class="mt-4 text-lg text-muted-foreground">
+          Each offering is shaped around a specific data environment, risk
+          posture, and decision workflow.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {
+          sectorCards.map((card) => (
+            <Card
+              href={card.href}
+              class="group h-full hover:-translate-y-1 hover:shadow-md"
+            >
+              <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Icon name={card.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="text-2xl font-bold text-foreground">{card.title}</h3>
+              <p class="mt-3 leading-relaxed text-muted-foreground">
+                {card.description}
+              </p>
+              <div class="mt-6 flex items-center gap-2 font-semibold text-primary">
+                View page
+                <span class="transition-transform group-hover:translate-x-1">
+                  {"->"}
+                </span>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </BaseLayout>
