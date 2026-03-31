@@ -3,7 +3,7 @@ import ogImage from "@/assets/og-image.png";
 export const siteConfig = {
   name: "Agentic Pacific",
   description:
-    "AI-augmented solutions for Pacific legal, financial, document, and geospatial knowledge work.",
+    "AI-augmented Domain-Specific Solutions for The Pacific Islands | Legal AI, Financial Techh, Document AI, and Earth Observations.",
   url: "https://agenticpacific.github.io",
   lang: "en",
   locale: "en_US",

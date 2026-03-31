@@ -126,6 +126,8 @@ const comparisonRows = [
   },
 ];
 
+const carouselSlideCount = 8;
+
 const references = [
   {
     label: "LegalFly - A lawyer's guide to LLMs",
@@ -153,9 +155,9 @@ const references = [
 <BaseLayout {metadata}>
   <Content
     tagline="Legal AI"
-    title="Intelligence grounded in Fiji law"
+    title="Intelligence grounded in Fiji's Law"
     description={[
-      "The legal landscape of Fiji is intricate, spanning decades of acts, bills, subsidiary instruments, gazettes, and judgments. Agentic Pacific is designed as a high-precision legal research and drafting assistant for that environment.",
+      "The legal landscape of Fiji is intricate, spanning decades of Acts, Bills, Legal Notices, Subsidiary Instruments, Gazettes and Judgments. Agentic Pacific is designed as a high-precision legal research and drafting assistant for that environment.",
       "Instead of acting like a black box, the system is built to surface the documents behind the answer so practitioners can verify reasoning, inspect the source, and keep client confidentiality intact.",
     ]}
     image="/illustrations/legal.svg"
@@ -224,7 +226,7 @@ const references = [
                 <div class="group relative overflow-hidden rounded-3xl border border-border bg-background/70 p-7 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <div
                     class={`absolute -right-10 -top-10 h-36 w-36 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-100 ${stat.glow} opacity-80`}
-                  ></div>
+                  />
                   <div class="relative">
                     <div
                       class={`bg-linear-to-r ${stat.accent} bg-clip-text text-6xl font-black tracking-tight text-transparent md:text-7xl`}
@@ -244,6 +246,246 @@ const references = [
           </div>
         </div>
       </div>
+
+      <div
+        class="mt-12 overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm"
+      >
+        <div class="relative px-6 py-10 md:px-10 md:py-12">
+          <div class="relative mx-auto max-w-7xl">
+            <div
+              class="text-sm font-semibold uppercase tracking-[0.22em] text-primary mb-6"
+            >
+              Fiji Legal AI PLatform Showcase
+            </div>
+
+            <div class="relative group">
+              <div
+                class="relative overflow-hidden rounded-2xl bg-background/50 h-[30rem] md:h-[42rem]"
+              >
+                <img
+                  id="carousel-image"
+                  src="/ss0.png"
+                  alt="Platform screenshot"
+                  class="h-full w-full object-contain transition-opacity duration-300"
+                />
+
+                <button
+                  id="magnify-btn"
+                  type="button"
+                  class="absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-background/85 px-3 py-2 text-xs font-semibold text-foreground shadow-sm ring-1 ring-border transition-colors hover:bg-background"
+                  aria-label="View image fullscreen"
+                  aria-haspopup="dialog"
+                  aria-controls="carousel-lightbox"
+                >
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 15l6 6m-2-7a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                  Fullscreen
+                </button>
+              </div>
+
+              <button
+                id="prev-btn"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Previous slide"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button
+                id="next-btn"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Next slide"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+
+              <div class="flex justify-center gap-2 mt-6">
+                {
+                  Array.from({ length: carouselSlideCount }).map((_, i) => (
+                    <button
+                      class={`h-2 rounded-full transition-all duration-300 ${
+                        i === 0
+                          ? "bg-primary w-8"
+                          : "bg-primary/30 w-2 hover:bg-primary/50"
+                      }`}
+                      data-slide={i}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))
+                }
+              </div>
+
+              <div
+                id="carousel-lightbox"
+                class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 px-4"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Fullscreen carousel image"
+              >
+                <button
+                  id="close-lightbox-btn"
+                  type="button"
+                  class="absolute right-4 top-4 rounded-full bg-white/15 p-2 text-white transition-colors hover:bg-white/25"
+                  aria-label="Close fullscreen view"
+                >
+                  <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+
+                <img
+                  id="lightbox-image"
+                  src="/ss0.png"
+                  alt="Fullscreen platform screenshot"
+                  class="max-h-[90vh] max-w-[95vw] object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        let currentSlide = 0;
+        const slideButtons = Array.from(
+          document.querySelectorAll("[data-slide]"),
+        );
+        const totalSlides = slideButtons.length;
+
+        function updateCarousel() {
+          if (totalSlides === 0) {
+            return;
+          }
+
+          if (currentSlide >= totalSlides || currentSlide < 0) {
+            currentSlide = 0;
+          }
+
+          const img = document.getElementById(
+            "carousel-image",
+          ) as HTMLImageElement;
+          const slideSrc = `/ss${currentSlide}.png`;
+          img.src = slideSrc;
+
+          const lightboxImage = document.getElementById(
+            "lightbox-image",
+          ) as HTMLImageElement | null;
+          if (lightboxImage) {
+            lightboxImage.src = slideSrc;
+          }
+
+          slideButtons.forEach((btn, i) => {
+            btn.classList.toggle("bg-primary", i === currentSlide);
+            btn.classList.toggle("w-8", i === currentSlide);
+            btn.classList.toggle("bg-primary/30", i !== currentSlide);
+            btn.classList.toggle("w-2", i !== currentSlide);
+          });
+        }
+
+        document.getElementById("prev-btn")?.addEventListener("click", () => {
+          if (totalSlides === 0) {
+            return;
+          }
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateCarousel();
+        });
+
+        document.getElementById("next-btn")?.addEventListener("click", () => {
+          if (totalSlides === 0) {
+            return;
+          }
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateCarousel();
+        });
+
+        slideButtons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            currentSlide = parseInt(
+              (e.currentTarget as HTMLElement).getAttribute("data-slide") ||
+                "0",
+              10,
+            );
+            updateCarousel();
+          });
+        });
+
+        updateCarousel();
+
+        const lightbox = document.getElementById("carousel-lightbox");
+
+        document
+          .getElementById("magnify-btn")
+          ?.addEventListener("click", () => {
+            lightbox?.classList.remove("hidden");
+            lightbox?.classList.add("flex");
+          });
+
+        document
+          .getElementById("close-lightbox-btn")
+          ?.addEventListener("click", () => {
+            lightbox?.classList.add("hidden");
+            lightbox?.classList.remove("flex");
+          });
+
+        lightbox?.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (
+            e.key === "Escape" &&
+            lightbox &&
+            !lightbox.classList.contains("hidden")
+          ) {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+          }
+        });
+      </script>
 
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
         <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
@@ -305,9 +547,13 @@ const references = [
 
   <ComparisonTable
     tagline="Comparison"
-    title="Agentic Pacific vs. standard cloud AI"
+    title="Agentic Pacific vs. Standard Cloud AI"
     subtitle="For legal work, the real difference is not novelty. It is liability, verification, and whether the system respects privilege and jurisdictional specificity."
-    headers={["Feature", "Agentic Pacific (local RAG)", "Standard cloud AI"]}
+    headers={[
+      "Feature",
+      "Agentic Pacific (localised RAG)",
+      "Standard Cloud AI (eg: ChatGPT)",
+    ]}
     rows={comparisonRows}
   />
 
