@@ -1,6 +1,8 @@
 ---
 import { siteConfig } from "@/config/site";
 import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+
+const contactFormAction = "https://formspree.io/f/xeepkwne";
 ---
 
 <nav
@@ -35,12 +37,13 @@ import ThemeToggle from "@/components/ui/ThemeToggle.astro";
     </div>
 
     <div class="hidden md:flex items-center gap-4">
-      <a
-        href={siteConfig.socialLinks.email}
+      <button
+        type="button"
+        data-contact-open
         class="rounded-full bg-foreground/10 px-4 py-2 text-sm font-semibold text-foreground transition-all hover:bg-foreground/20"
       >
-        Email
-      </a>
+        Contact
+      </button>
       <ThemeToggle />
     </div>
 
@@ -105,29 +108,284 @@ import ThemeToggle from "@/components/ui/ThemeToggle.astro";
           </a>
         ))
       }
-      <a
-        href={siteConfig.socialLinks.email}
+      <button
+        type="button"
+        data-contact-open
         class="block rounded-md px-3 py-2 text-base font-medium text-blue-400 transition-colors hover:cursor-pointer hover:bg-blue-500/10 hover:text-blue-300"
-        >Email</a
       >
+        Contact
+      </button>
     </div>
   </div>
 </nav>
 
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[60] hidden items-center justify-center bg-background/80 px-4 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+  tabindex="-1"
+>
+  <div
+    class="w-full max-w-xl rounded-[2rem] border border-border bg-card p-6 shadow-xl sm:p-8"
+  >
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <p
+          class="text-sm font-semibold uppercase tracking-[0.22em] text-primary"
+        >
+          Contact Agentic Pacific
+        </p>
+        <h2
+          id="contact-modal-title"
+          class="mt-2 text-2xl font-semibold text-foreground"
+        >
+          Send us a message
+        </h2>
+        <p class="mt-3 text-sm text-muted-foreground">
+          Tell us a little about your Legal, Financial, Document, or Geospatial
+          AI requirements, and we will get back to you with a customised
+          solution.
+        </p>
+      </div>
+
+      <button
+        id="contact-modal-close"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
+        aria-label="Close contact form"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <form
+      id="header-contact-form"
+      action={contactFormAction}
+      method="POST"
+      class="mt-8 space-y-4"
+    >
+      <input
+        type="hidden"
+        name="_subject"
+        value="New Agentic Pacific website inquiry"
+      />
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="mb-2 block text-sm font-medium text-foreground"
+            >Name</span
+          >
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+        </label>
+
+        <label class="block">
+          <span class="mb-2 block text-sm font-medium text-foreground"
+            >Email</span
+          >
+          <input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+        </label>
+      </div>
+
+      <label class="block">
+        <span class="mb-2 block text-sm font-medium text-foreground">
+          Organization
+        </span>
+        <input
+          name="organization"
+          type="text"
+          autocomplete="organization"
+          class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+        />
+      </label>
+
+      <label class="block">
+        <span class="mb-2 block text-sm font-medium text-foreground">
+          Inquiry type
+        </span>
+        <div class="relative">
+          <select
+            name="inquiryType"
+            required
+            class="w-full appearance-none rounded-2xl border border-border bg-background px-4 py-3 pr-12 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+          >
+            <option value="">Select an inquiry type</option>
+            <option value="Request for a demo">Request For A Demo</option>
+            <option value="Custom requirements">Custom Requirements</option>
+            <option value="Technical support">Technical Support</option>
+            <option value="Billing enquiries">Billing Enquiries</option>
+            <option value="Partnership enquiry">Partnership Enquiry</option>
+            <option value="General enquiry">General Enquiry</option>
+          </select>
+
+          <span
+            class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-muted-foreground"
+          >
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </span>
+        </div>
+      </label>
+
+      <label class="block">
+        <span class="mb-2 block text-sm font-medium text-foreground"
+          >Message</span
+        >
+        <textarea
+          name="message"
+          rows="5"
+          required
+          class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+        ></textarea>
+      </label>
+
+      <p
+        id="contact-form-status"
+        class="min-h-5 text-sm text-muted-foreground"
+        aria-live="polite"
+      >
+      </p>
+
+      <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+        <button
+          type="button"
+          id="contact-modal-cancel"
+          class="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/5"
+        >
+          Cancel
+        </button>
+        <button
+          id="contact-form-submit"
+          type="submit"
+          class="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          Send message
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
   document.addEventListener("astro:page-load", () => {
-    const button = document.getElementById("mobile-menu-button");
     const menu = document.getElementById("mobile-menu");
-    const iconClosed = document.getElementById("menu-icon-closed");
-    const iconOpen = document.getElementById("menu-icon-open");
+    const contactModal = document.getElementById("contact-modal");
+    const contactForm = document.getElementById(
+      "header-contact-form",
+    ) as HTMLFormElement | null;
+    const contactSubmit = document.getElementById(
+      "contact-form-submit",
+    ) as HTMLButtonElement | null;
+    const contactStatus = document.getElementById(
+      "contact-form-status",
+    ) as HTMLParagraphElement | null;
+    const closeContactButtons = [
+      document.getElementById("contact-modal-close"),
+      document.getElementById("contact-modal-cancel"),
+    ];
+    const contactOpenButtons = Array.from(
+      document.querySelectorAll("[data-contact-open]"),
+    ) as HTMLElement[];
+    const firstContactField = document.getElementById(
+      "contact-name",
+    ) as HTMLInputElement | null;
+    let lastContactTrigger: HTMLElement | null = null;
+
+    function setContactStatus(
+      message: string,
+      tone: "default" | "success" | "error" = "default",
+    ) {
+      if (!contactStatus) {
+        return;
+      }
+
+      contactStatus.textContent = message;
+      contactStatus.className =
+        tone === "success"
+          ? "min-h-5 text-sm text-green-600 dark:text-green-400"
+          : tone === "error"
+            ? "min-h-5 text-sm text-red-600 dark:text-red-400"
+            : "min-h-5 text-sm text-muted-foreground";
+    }
 
     // Remove old event listener if it exists to prevent multiple triggers
-    const newButton = button?.cloneNode(true);
-    if (newButton && button && button.parentNode) {
-      button.parentNode.replaceChild(newButton, button);
+    const initialButton = document.getElementById("mobile-menu-button");
+    const newButton = initialButton?.cloneNode(true);
+    if (newButton && initialButton && initialButton.parentNode) {
+      initialButton.parentNode.replaceChild(newButton, initialButton);
     }
 
     const finalButton = document.getElementById("mobile-menu-button");
+    const iconClosed = document.getElementById("menu-icon-closed");
+    const iconOpen = document.getElementById("menu-icon-open");
+
+    function closeMobileMenu() {
+      menu?.classList.add("hidden");
+      finalButton?.setAttribute("aria-expanded", "false");
+      iconClosed?.classList.remove("hidden");
+      iconOpen?.classList.add("hidden");
+    }
+
+    function openContactModal(trigger?: HTMLElement) {
+      if (!contactModal) {
+        return;
+      }
+
+      lastContactTrigger = trigger ?? null;
+      closeMobileMenu();
+      setContactStatus("");
+      contactModal.classList.remove("hidden");
+      contactModal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      firstContactField?.focus();
+    }
+
+    function closeContactModal() {
+      if (!contactModal) {
+        return;
+      }
+
+      contactModal.classList.add("hidden");
+      contactModal.classList.remove("flex");
+      document.body.style.overflow = "";
+      lastContactTrigger?.focus();
+    }
 
     finalButton?.addEventListener("click", () => {
       const isExpanded = finalButton.getAttribute("aria-expanded") === "true";
@@ -137,5 +395,83 @@ import ThemeToggle from "@/components/ui/ThemeToggle.astro";
       iconClosed?.classList.toggle("hidden");
       iconOpen?.classList.toggle("hidden");
     });
+
+    contactOpenButtons.forEach((openButton) => {
+      openButton.onclick = () => openContactModal(openButton);
+    });
+
+    closeContactButtons.forEach((closeButton) => {
+      if (closeButton instanceof HTMLElement) {
+        closeButton.onclick = () => closeContactModal();
+      }
+    });
+
+    if (contactModal instanceof HTMLElement) {
+      contactModal.onclick = (event) => {
+        if (event.target === contactModal) {
+          closeContactModal();
+        }
+      };
+
+      contactModal.onkeydown = (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeContactModal();
+        }
+      };
+    }
+
+    if (contactForm) {
+      contactForm.onsubmit = async (event) => {
+        event.preventDefault();
+        setContactStatus("");
+        contactSubmit?.setAttribute("disabled", "true");
+
+        if (contactSubmit) {
+          contactSubmit.textContent = "Sending...";
+        }
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: contactForm.method,
+            body: new FormData(contactForm),
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            const errorPayload = (await response.json().catch(() => null)) as {
+              errors?: { message?: string }[];
+            } | null;
+            const errorMessage =
+              errorPayload?.errors
+                ?.map((error) => error.message)
+                .filter(Boolean)
+                .join(" ") ||
+              "Your message could not be sent. Please try again.";
+            throw new Error(errorMessage);
+          }
+
+          contactForm.reset();
+          setContactStatus(
+            "Thanks. Your message has been sent successfully.",
+            "success",
+          );
+        } catch (error) {
+          const message =
+            error instanceof Error
+              ? error.message
+              : "Your message could not be sent. Please try again.";
+          setContactStatus(message, "error");
+        } finally {
+          contactSubmit?.removeAttribute("disabled");
+
+          if (contactSubmit) {
+            contactSubmit.textContent = "Send message";
+          }
+        }
+      };
+    }
   });
 </script>

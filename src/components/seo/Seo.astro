@@ -26,6 +26,11 @@ const fullTitle =
     : title || siteConfig.name;
 const canonicalURL =
   canonical ?? new URL(Astro.url.pathname, siteConfig.url).toString();
+const twitterHandle =
+  "twitter" in siteConfig.socialLinks &&
+  typeof siteConfig.socialLinks.twitter === "string"
+    ? siteConfig.socialLinks.twitter
+    : undefined;
 ---
 
 <!-- Global Metadata -->
@@ -55,8 +60,4 @@ const canonicalURL =
 <meta property="twitter:title" content={fullTitle} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(ogImageSrc, siteConfig.url)} />
-{
-  siteConfig.twitter && (
-    <meta property="twitter:creator" content={siteConfig.twitter} />
-  )
-}
+{twitterHandle && <meta property="twitter:creator" content={twitterHandle} />}

@@ -210,11 +210,14 @@ const references = [
               Fiji legal corpus
             </div>
             <h2 class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
-              The legal engine is backed by a visibly substantial source base
+              The legal engine is backed by a visibly substantial and
+              authoritative source base
             </h2>
             <p class="mt-4 text-lg text-muted-foreground">
               These are the headline corpus counts that power retrieval,
-              citation, drafting support, and comparative legal analysis.
+              citation, drafting support, and comparative legal analysis. The
+              corpus is regularly updated to reflect new legislation, judgments,
+              and legal notices as soon as they become available.
             </p>
           </div>
 
@@ -258,7 +261,13 @@ const references = [
               Fiji Legal AI PLatform Showcase
             </div>
 
-            <div class="relative group">
+            <div
+              id="legal-carousel"
+              class="relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              role="region"
+              aria-label="Legal AI platform screenshot carousel"
+              tabindex="0"
+            >
               <div
                 class="relative overflow-hidden rounded-2xl bg-background/50 h-[30rem] md:h-[42rem]"
               >
@@ -353,6 +362,7 @@ const references = [
                 role="dialog"
                 aria-modal="true"
                 aria-label="Fullscreen carousel image"
+                tabindex="-1"
               >
                 <button
                   id="close-lightbox-btn"
@@ -392,6 +402,22 @@ const references = [
           document.querySelectorAll("[data-slide]"),
         );
         const totalSlides = slideButtons.length;
+        const carousel = document.getElementById("legal-carousel");
+        const lightbox = document.getElementById("carousel-lightbox");
+        const magnifyButton = document.getElementById("magnify-btn");
+
+        function isEditableTarget(target: EventTarget | null) {
+          if (!(target instanceof HTMLElement)) {
+            return false;
+          }
+
+          return (
+            target.isContentEditable ||
+            target instanceof HTMLInputElement ||
+            target instanceof HTMLTextAreaElement ||
+            target instanceof HTMLSelectElement
+          );
+        }
 
         function updateCarousel() {
           if (totalSlides === 0) {
@@ -423,21 +449,41 @@ const references = [
           });
         }
 
-        document.getElementById("prev-btn")?.addEventListener("click", () => {
+        function goToPreviousSlide() {
           if (totalSlides === 0) {
             return;
           }
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
           updateCarousel();
-        });
+        }
 
-        document.getElementById("next-btn")?.addEventListener("click", () => {
+        function goToNextSlide() {
           if (totalSlides === 0) {
             return;
           }
           currentSlide = (currentSlide + 1) % totalSlides;
           updateCarousel();
-        });
+        }
+
+        function openLightbox() {
+          lightbox?.classList.remove("hidden");
+          lightbox?.classList.add("flex");
+          lightbox?.focus();
+        }
+
+        function closeLightbox() {
+          lightbox?.classList.add("hidden");
+          lightbox?.classList.remove("flex");
+          magnifyButton?.focus();
+        }
+
+        document
+          .getElementById("prev-btn")
+          ?.addEventListener("click", goToPreviousSlide);
+
+        document
+          .getElementById("next-btn")
+          ?.addEventListener("click", goToNextSlide);
 
         slideButtons.forEach((btn) => {
           btn.addEventListener("click", (e) => {
@@ -452,26 +498,45 @@ const references = [
 
         updateCarousel();
 
-        const lightbox = document.getElementById("carousel-lightbox");
-
         document
           .getElementById("magnify-btn")
-          ?.addEventListener("click", () => {
-            lightbox?.classList.remove("hidden");
-            lightbox?.classList.add("flex");
-          });
+          ?.addEventListener("click", openLightbox);
 
         document
           .getElementById("close-lightbox-btn")
-          ?.addEventListener("click", () => {
-            lightbox?.classList.add("hidden");
-            lightbox?.classList.remove("flex");
-          });
+          ?.addEventListener("click", closeLightbox);
 
         lightbox?.addEventListener("click", (e) => {
           if (e.target === lightbox) {
-            lightbox.classList.add("hidden");
-            lightbox.classList.remove("flex");
+            closeLightbox();
+          }
+        });
+
+        carousel?.addEventListener("keydown", (e) => {
+          if (isEditableTarget(e.target)) {
+            return;
+          }
+
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goToPreviousSlide();
+          }
+
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goToNextSlide();
+          }
+        });
+
+        lightbox?.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goToPreviousSlide();
+          }
+
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goToNextSlide();
           }
         });
 
@@ -481,8 +546,7 @@ const references = [
             lightbox &&
             !lightbox.classList.contains("hidden")
           ) {
-            lightbox.classList.add("hidden");
-            lightbox.classList.remove("flex");
+            closeLightbox();
           }
         });
       </script>

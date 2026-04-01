@@ -64,7 +64,7 @@ const sectorCards = [
   <Hero
     title={`Agentic AI Solution<br class="hidden md:block" /> <span class="bg-linear-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Engineered for the Pacific Context</span>`}
     tagline="Legal AI Services | FinTech Solutions | Earth Observations | Document Processing | Custom AI Agents"
-    description="Agentic Pacific offers AI-enhanced solutions and services to support the expanding knowledge sector in the Pacific Islands. Our expertise lies in AI context engineering for local specialised domains, such as legal and finance AI services, natural resource management using earth observations and spatial machine learning."
+    description="Agentic Pacific offers AI-enhanced solutions and services to support the expanding knowledge sector in the Pacific Islands. Our expertise lies in AI context engineering for local specialised domains, such as legal and finance AI services, workflow automations, natural resource management using earth observations and spatial machine learning."
     actions={[
       {
         text: "Explore Legal AI",
@@ -88,21 +88,21 @@ const sectorCards = [
     subtitle="We pair modern and open AI systems with local domain grounding, transparent retrieval, and production-ready delivery patterns."
     features={[
       {
-        title: "Context engineering",
+        title: "Context Engineering",
         description:
-          "We structure domain knowledge, policies, and edge cases so models respond with the nuance your environment actually requires.",
+          "We structure domain knowledge, policies, and edge cases so customised models respond with the nuance your environment actually requires.",
         icon: "lucide:brain-circuit",
         iconClass: "bg-blue-500/10 text-blue-400",
       },
       {
-        title: "Sovereign AI architecture",
+        title: "Sovereign AI Architecture",
         description:
           "Local-first and private deployments keep sensitive legal, financial, and institutional data under your control.",
         icon: "lucide:shield-check",
         iconClass: "bg-emerald-500/10 text-emerald-400",
       },
       {
-        title: "Cloud-native delivery",
+        title: "Cloud-Native Delivery",
         description:
           "We package retrieval pipelines, frontier-level open source models, observability, APIs, and user-facing workflows into maintainable production systems.",
         icon: "lucide:cloud-cog",
@@ -111,8 +111,58 @@ const sectorCards = [
     ]}
   />
 
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-3xl text-center mb-8">
+        <div
+          class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
+        >
+          Compare our offerings
+        </div>
+        <h2 class="text-4xl font-bold tracking-tight md:text-4xl">
+          Why not just use ChatGPT, Gemini or Claude?
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div>
+          <p style="text-align: justify;" class="text-lg text-muted-foreground">
+            General cloud models from OpenAI, Google and Anthropic are suitable
+            for broad creative tasks, general-purpose assistance and quick,
+            broad-knowledge solutions without specialised data. <b
+              >Agentic Pacific</b
+            >
+            solutions are built on custom-developed <b>Fine-Tuned Models</b> (SFT,
+            LoRA, QLoRA). These are specialised, high-accuracy AI models adapted from
+            a general base model using specific, often proprietary, datasets to excel
+            at niche tasks (e.g. legal or financial analysis) or company-specific
+            behaviour and knowledge.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <img
+            src="/finetuning.png"
+            alt="Cloud LLM models vs local fine-tuned models"
+            class="w-full max-w-4xl"
+          />
+        </div>
+        <div>
+          <p style="text-align: justify;" class="text-lg text-muted-foreground">
+            General models are broad, pre-trained and versatile but lack
+            specific expertise. Fine-tuning offers greater precision, lower
+            inference costs and behavioural control but is more expensive to
+            develop. Additionally, Agentic Pacific solutions implement
+            <b>Retrieval-Augmented Generation (RAG)</b>, which is essential for
+            enterprise AI applications. RAG bridges the gap between the static,
+            generalised knowledge of large language models (LLMs) and the need
+            for accurate, up-to-date and private information.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <Content2
-    tagline="Delivery model"
+    tagline="Delivery Model"
     title="From promising demos to operational systems"
     description={[
       "Many enterprise AI rollouts fail at the exact point where business rules, tenant-specific configuration, and approval logic become messy. The result is a polished prototype that still needs a human expert to finish every high-stakes workflow.",
@@ -154,11 +204,11 @@ const sectorCards = [
           Sector pages
         </div>
         <h2 class="text-4xl font-bold tracking-tight md:text-5xl">
-          Explore the Agentic Pacific solution tracks
+          Explore the Agentic Pacific solution stacks
         </h2>
         <p class="mt-4 text-lg text-muted-foreground">
-          Each offering is shaped around a specific data environment, risk
-          posture, and decision workflow.
+          Each offering is shaped around a domain-specific data environment,
+          risk posture, and decision workflow.
         </p>
       </div>
 
