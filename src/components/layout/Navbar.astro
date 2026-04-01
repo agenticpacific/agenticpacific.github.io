@@ -145,7 +145,7 @@ const contactFormAction = "https://formspree.io/f/xeepkwne";
         </h2>
         <p class="mt-3 text-sm text-muted-foreground">
           Tell us a little about your Legal, Financial, Document, or Geospatial
-          AI requirements, and we will get back to you with a customised
+          AI requirements, and we will come back to you with a customised
           solution.
         </p>
       </div>
@@ -212,21 +212,36 @@ const contactFormAction = "https://formspree.io/f/xeepkwne";
         </label>
       </div>
 
-      <label class="block">
-        <span class="mb-2 block text-sm font-medium text-foreground">
-          Organization
-        </span>
-        <input
-          name="organization"
-          type="text"
-          autocomplete="organization"
-          class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-        />
-      </label>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="mb-2 block text-sm font-medium text-foreground">
+            Organisation
+          </span>
+          <input
+            name="organization"
+            type="text"
+            autocomplete="organization"
+            class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+        </label>
+
+        <label class="block">
+          <span class="mb-2 block text-sm font-medium text-foreground">
+            Phone number
+          </span>
+          <input
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            inputmode="tel"
+            class="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+        </label>
+      </div>
 
       <label class="block">
         <span class="mb-2 block text-sm font-medium text-foreground">
-          Inquiry type
+          Inquiry Type
         </span>
         <div class="relative">
           <select
