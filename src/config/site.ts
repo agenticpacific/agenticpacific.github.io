@@ -18,7 +18,7 @@ export const siteConfig = {
     { text: "Legal AI", href: "/legal" },
     { text: "FinTech", href: "/fintech" },
     { text: "Document AI", href: "/docai" },
-    { text: "Earth Observations", href: "/eo" },
+    { text: "Earth Intelligence", href: "/eo" },
     { text: "Custom AI Agents", href: "/custom" },
     { text: "About", href: "/about" },
   ],

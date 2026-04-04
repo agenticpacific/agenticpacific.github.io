@@ -4,119 +4,185 @@ import Content from "@/components/widgets/Content.astro";
 import Features from "@/components/widgets/Features.astro";
 import Content2 from "@/components/widgets/Content2.astro";
 import Values from "@/components/widgets/Values.astro";
+import ComparisonTable from "@/components/sections/ComparisonTable.astro";
 import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
 
 const metadata = {
-  title: "Earth Observations",
+  title: "Earth Observations & Earth Intelligence for the Pacific",
   description:
-    "Earth observation intelligence using embeddings, spatial machine learning, and geospatial workflows.",
+    "AI-powered Earth observation intelligence for Pacific Island nations — climate resilience, land cover monitoring, coastal protection, and natural resource management using embeddings and spatial machine learning.",
 };
+
+const pacificApplications = [
+  {
+    title: "Climate resilience & early warning",
+    description:
+      "AI-powered analysis of satellite imagery and local sensor data delivers early warning systems for cyclones, floods, and storm surges — providing Pacific communities with critical time to prepare and protect lives and infrastructure.",
+    icon: "lucide:cloud-lightning",
+  },
+  {
+    title: "Land cover & land-use change",
+    description:
+      "Monitor deforestation, agricultural expansion, urban growth, and land degradation across island landscapes. AI models trained on historical archives detect changes that manual review cannot match at scale.",
+    icon: "lucide:trees",
+  },
+  {
+    title: "Coastal & marine monitoring",
+    description:
+      "Track coral reef health, mangrove extent, coastal erosion, and sea-level impacts using satellite-derived bathymetry, seagrass mapping, and marine habitat classification — all critical for Pacific Island livelihoods.",
+    icon: "lucide:waves",
+  },
+  {
+    title: "Biodiversity & carbon management",
+    description:
+      "High-resolution monitoring of ecosystems, habitat classification, and carbon storage analysis support conservation, restoration, and compliance with the Kunming-Montreal Biodiversity Framework and the Paris Agreement.",
+    icon: "lucide:leaf",
+  },
+];
 
 const governanceItems = [
   {
     title: "Searchable Earth data",
     description:
-      "Embeddings create dense numerical summaries that make decades of imagery easier to search for crops, floods, fires, biodiversity, roads, and more.",
+      "Embeddings create dense numerical summaries that make decades of imagery searchable for crops, floods, fires, biodiversity, coral reefs, and more — turning petabytes of raw pixels into actionable Pacific intelligence.",
     icon: "lucide:search-code",
   },
   {
     title: "Lower compute barriers",
     description:
-      "The World Economic Forum article describes Earth embeddings as semantic compressions that can be less than 5% of the original image size.",
+      "Earth embeddings are semantic compressions often less than 5% of the original image size, reducing the compute and bandwidth demands that disproportionately affect remote Pacific communities.",
     icon: "lucide:gauge",
   },
   {
-    title: "Decision support",
+    title: "Decision-ready intelligence",
     description:
-      "These models can help flood detection, crop prediction, infrastructure analysis, and climate planning by surfacing patterns humans cannot review at scale.",
+      "GEO's Post-2025 Strategy emphasises Earth Intelligence — not just data access, but verified, actionable insights co-produced with local and Indigenous communities to drive tangible change.",
     icon: "lucide:radar",
   },
   {
-    title: "Governance still matters",
+    title: "Governance & data sovereignty",
     description:
-      "Accessibility, privacy, security, bias, and misuse prevention remain essential when operationalizing geospatial AI systems.",
+      "Accessibility, privacy, bias prevention, and data sovereignty remain essential when operationalizing geospatial AI — especially in Pacific contexts where cultural and environmental sensitivity is paramount.",
     icon: "lucide:shield-alert",
+  },
+];
+
+const comparisonHeaders = [
+  "Capability",
+  "Traditional Approach",
+  "With Agentic Pacific AI",
+];
+
+const comparisonRows = [
+  {
+    label: "Land cover analysis",
+    values: [
+      "Manual classification of satellite imagery across fragmented tools.",
+      "AI-driven land-use classification with over 90% accuracy using foundation models like OlmoEarth and IBM TerraMind earth foundation models.",
+    ],
+  },
+  {
+    label: "Climate monitoring",
+    values: [
+      "Reliance on global models with limited Pacific-specific resolution.",
+      "Localised embeddings integrating satellite, sensor, and community knowledge for island-scale insight.",
+    ],
+  },
+  {
+    label: "Disaster response",
+    values: [
+      "Reactive post-event assessment using manual image review.",
+      "Near real-time flood detection, cyclone tracking, and damage assessment with AI-powered early warning.",
+    ],
+  },
+  {
+    label: "Data accessibility",
+    values: [
+      "Requires GIS expertise and high-bandwidth connectivity.",
+      "Natural language queries over compressed embeddings — accessible even with limited connectivity.",
+    ],
+  },
+  {
+    label: "Resource monitoring",
+    values: [
+      "Periodic field surveys with limited geographic coverage.",
+      "Continuous satellite-based monitoring of forests, reefs, mangroves, and water resources at scale.",
+    ],
   },
 ];
 
 const references = [
   {
-    label: "World Economic Forum - AI embeddings for Earth observation",
+    label: "What is Earth Intelligence? — Group on Earth Observations",
+    href: "https://earthobservations.org/resources/what-is-earth-intelligence",
+    note: "Earth Intelligence transforms raw data into actionable insights by integrating Earth and social science, advanced analytics, AI, and co-produced knowledge from local and Indigenous communities.",
+  },
+  {
+    label: "GEO Post-2025 Strategy",
+    href: "https://earthobservations.org/storage/documents/Key-Documents/GEO%20Post%202025%20Strategy%20Full%20Document.pdf",
+    note: "GEO's strategic vision commits to ensuring that Earth observation data serves as a driver of tangible change — bridging knowledge gaps and fostering innovation for sustainable development.",
+  },
+  {
+    label: "How AI is revolutionizing Earth observation — World Economic Forum",
     href: "https://www.weforum.org/stories/2024/10/ai-embeddings-earth-observation/",
-    note: "Source material on embeddings, semantic compression, geospatial search, climate value, and governance considerations.",
+    note: "AI embeddings translate raw satellite data into meaningful insights, enabling over 90% accuracy in land-use classification, aquaculture detection, and biomass estimation.",
+  },
+  {
+    label: "How Is AI Empowering Earth Intelligence? — InformationWeek",
+    href: "https://www.informationweek.com/machine-learning-ai/how-is-ai-empowering-earth-intelligence-",
+    note: "Advanced AI tools deliver actionable insights for deforestation tracking, precision agriculture, water management, biodiversity conservation, and climate prediction.",
   },
 ];
 ---
 
 <BaseLayout {metadata}>
   <Content
-    tagline="Earth Observations"
-    title="From pixels to predictions"
+    tagline="Earth Intelligence for the Pacific"
+    title="From Pixels to Predictions: AI-Powered Earth Observation for Pacific Island Nations"
     description={[
-      "Earth observation data is abundant, but usable insight is still difficult to extract at scale. Agentic Pacific applies embeddings and spatial machine learning so geospatial archives become easier to search, compare, and operationalize.",
-      "The result is a more searchable picture of ecosystems, biodiversity, floods, crops, infrastructure, and land change - especially valuable for Pacific planning and climate resilience workflows.",
+      "Pacific Island nations face some of the most urgent climate and environmental challenges on Earth — rising sea levels, intensifying cyclones, coral reef degradation, and threats to biodiversity and food security. Yet the satellite data needed to respond exists in overwhelming volumes that are difficult to access and interpret.",
+      "Agentic Pacific bridges this gap by applying AI embeddings, spatial machine learning, and the Earth Intelligence framework championed by GEO's Post-2025 Strategy — transforming raw Earth observation data into decision-ready insights for climate resilience, land cover monitoring, coastal protection, and natural resource management across the Pacific.",
     ]}
     image="/illustrations/eo.svg"
-    imageAlt="Earth observations illustration"
+    imageAlt="Earth Intelligence for the Pacific"
   />
 
   <Features
-    tagline="Why embeddings matter"
-    title="A new layer of geospatial understanding"
-    subtitle="The World Economic Forum describes Earth embeddings as a way to translate raw data into compact, meaningful summaries that preserve context and pattern."
-    features={[
-      {
-        title: "Dense summaries",
-        description:
-          "Embeddings compress huge imagery archives into vectors that can capture meaning across space, time, and land-use concepts.",
-        icon: "lucide:binary",
-        iconClass: "bg-blue-500/10 text-blue-400",
-      },
-      {
-        title: "Faster search and classification",
-        description:
-          "Open model benchmarks cited in the article show over 90% accuracy on tasks such as land-use classification, aquaculture detection, and biomass estimation.",
-        icon: "lucide:scan-search",
-        iconClass: "bg-emerald-500/10 text-emerald-400",
-      },
-      {
-        title: "Climate and economic value",
-        description:
-          "The same WEF ecosystem points to major potential value from Earth observation when more stakeholders can actually use it.",
-        icon: "lucide:leaf",
-        iconClass: "bg-cyan-500/10 text-cyan-400",
-      },
-    ]}
+    tagline="Pacific applications"
+    title="AI-powered intelligence for Pacific priorities"
+    subtitle="From climate adaptation to biodiversity conservation, Agentic Pacific delivers Earth Intelligence tailored to the unique challenges of Small Island Developing States. Drawing on platforms like Open Data Cube (ODC) and GEO's Global Observation Network, we make decades of satellite data actionable."
+    features={pacificApplications}
   />
 
   <Content2
-    tagline="Operational opportunity"
-    title="Search the planet with local questions"
+    tagline="The technology"
+    title="Earth embeddings: a new way of seeing"
     description={[
-      "Instead of manually reviewing pixels and maps, teams can work with embedding-backed systems that understand both individual features and broader environmental patterns.",
+      "The World Economic Forum describes Earth embeddings as a paradigm shift — AI creates dense mathematical summaries from satellite imagery that are often less than 5% of the original size, yet capture meaning across space, time, and environmental concepts. Foundation models like Clay have demonstrated over 90% accuracy in classifying land use, detecting aquaculture, and estimating biomass.",
+      "For the Pacific, this means teams can ask natural-language questions about their environment — 'Where has mangrove cover declined in the last five years?' or 'Which coastal areas face the highest erosion risk?' — and receive verified, cited answers in seconds rather than weeks of manual analysis.",
     ]}
     image="/illustrations/eo.svg"
-    imageAlt="Embeddings for earth observation illustration"
+    imageAlt="Earth embeddings and AI illustration"
     items={[
       {
-        title: "Natural resource monitoring",
+        title: "Land cover & deforestation tracking",
         description:
-          "Track forest change, river flows, coastal activity, biodiversity patterns, or land-use transitions using semantic similarity rather than manual tagging alone.",
+          "AI analyses satellite archives to detect changes in forest cover, agricultural land, and urban expansion in real-time — helping Pacific governments meet their commitments under the Paris Agreement and the Kunming-Montreal Biodiversity Framework.",
       },
       {
-        title: "Disaster and resilience workflows",
+        title: "Coastal resilience & marine resources",
         description:
-          "Support flood response, drought monitoring, or infrastructure planning with faster access to relevant historical and current imagery context.",
+          "Satellite-derived products including seagrass mapping, marine habitat classification, and bathymetry support fisheries management, coral reef conservation, and coastal infrastructure planning.",
       },
       {
-        title: "Open-data leverage",
+        title: "Water & natural resource management",
         description:
-          "Earth observation is unusually rich in openly licensed, real-world data, making it an attractive foundation for transparent AI systems.",
+          "Monitor river flows, water quality, drought conditions, and watershed health using AI-driven synthesis of satellite, sensor, and community-sourced data — critical for Pacific food and water security.",
       },
       {
-        title: "Governed deployment",
+        title: "Disaster risk reduction & early warning",
         description:
-          "Operational systems still need controls for privacy, national security, bias, and responsible use before they move beyond prototype status.",
+          "Integrate satellite data with local hydrological models to deliver early warning systems for floods, cyclones, and storm surges — aligned with the Sendai Framework and GEO's Early Warnings for All initiative.",
       },
     ]}
   />
@@ -125,12 +191,20 @@ const references = [
     items={governanceItems}
     columns={2}
     tagline="What Agentic Pacific brings"
-    title="Spatial AI with context and governance"
-    subtitle="We combine geospatial pipelines with retrieval, application design, and deployment thinking so Earth data becomes decision-ready rather than merely available."
+    title="Spatial AI with Pacific context and governance"
+    subtitle="We combine geospatial pipelines with AI retrieval, local context engineering, and deployment thinking — ensuring Earth data becomes decision-ready intelligence that respects data sovereignty, cultural sensitivity, and the specific needs of Pacific communities."
+  />
+
+  <ComparisonTable
+    tagline="Impact comparison"
+    title="Traditional approaches vs. AI-powered Earth Intelligence"
+    subtitle="How Agentic Pacific transforms Earth observation workflows for Pacific stakeholders."
+    headers={comparisonHeaders}
+    rows={comparisonRows}
   />
 
   <ReferenceLinks
     links={references}
-    subtitle="This page summarizes the World Economic Forum's discussion of AI embeddings and their implications for Earth observation."
+    subtitle="This page draws on the GEO Post-2025 Strategy the World Economic Forum's analysis of AI embeddings to present Agentic Pacific's approach to Earth Intelligence for the Pacific."
   />
 </BaseLayout>
