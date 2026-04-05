@@ -15,25 +15,25 @@ const metadata = {
 
 const pacificApplications = [
   {
-    title: "Climate resilience & early warning",
+    title: "Climate Resilience & Early Warning",
     description:
       "AI-powered analysis of satellite imagery and local sensor data delivers early warning systems for cyclones, floods, and storm surges — providing Pacific communities with critical time to prepare and protect lives and infrastructure.",
     icon: "lucide:cloud-lightning",
   },
   {
-    title: "Land cover & land-use change",
+    title: "Land Cover & Land-Use Change",
     description:
       "Monitor deforestation, agricultural expansion, urban growth, and land degradation across island landscapes. AI models trained on historical archives detect changes that manual review cannot match at scale.",
     icon: "lucide:trees",
   },
   {
-    title: "Coastal & marine monitoring",
+    title: "Coastal & Marine Monitoring",
     description:
       "Track coral reef health, mangrove extent, coastal erosion, and sea-level impacts using satellite-derived bathymetry, seagrass mapping, and marine habitat classification — all critical for Pacific Island livelihoods.",
     icon: "lucide:waves",
   },
   {
-    title: "Biodiversity & carbon management",
+    title: "Biodiversity & Carbon Management",
     description:
       "High-resolution monitoring of ecosystems, habitat classification, and carbon storage analysis support conservation, restoration, and compliance with the Kunming-Montreal Biodiversity Framework and the Paris Agreement.",
     icon: "lucide:leaf",
@@ -42,25 +42,25 @@ const pacificApplications = [
 
 const governanceItems = [
   {
-    title: "Searchable Earth data",
+    title: "Searchable Earth Data",
     description:
       "Embeddings create dense numerical summaries that make decades of imagery searchable for crops, floods, fires, biodiversity, coral reefs, and more — turning petabytes of raw pixels into actionable Pacific intelligence.",
     icon: "lucide:search-code",
   },
   {
-    title: "Lower compute barriers",
+    title: "Lower Compute Barriers",
     description:
       "Earth embeddings are semantic compressions often less than 5% of the original image size, reducing the compute and bandwidth demands that disproportionately affect remote Pacific communities.",
     icon: "lucide:gauge",
   },
   {
-    title: "Decision-ready intelligence",
+    title: "Decision-ready Intelligence",
     description:
       "GEO's Post-2025 Strategy emphasises Earth Intelligence — not just data access, but verified, actionable insights co-produced with local and Indigenous communities to drive tangible change.",
     icon: "lucide:radar",
   },
   {
-    title: "Governance & data sovereignty",
+    title: "Governance & Data Sovereignty",
     description:
       "Accessibility, privacy, bias prevention, and data sovereignty remain essential when operationalizing geospatial AI — especially in Pacific contexts where cultural and environmental sensitivity is paramount.",
     icon: "lucide:shield-alert",
@@ -75,35 +75,35 @@ const comparisonHeaders = [
 
 const comparisonRows = [
   {
-    label: "Land cover analysis",
+    label: "Land Cover Analysis",
     values: [
       "Manual classification of satellite imagery across fragmented tools.",
       "AI-driven land-use classification with over 90% accuracy using foundation models like OlmoEarth and IBM TerraMind earth foundation models.",
     ],
   },
   {
-    label: "Climate monitoring",
+    label: "Climate Monitoring",
     values: [
       "Reliance on global models with limited Pacific-specific resolution.",
       "Localised embeddings integrating satellite, sensor, and community knowledge for island-scale insight.",
     ],
   },
   {
-    label: "Disaster response",
+    label: "Disaster Response",
     values: [
       "Reactive post-event assessment using manual image review.",
       "Near real-time flood detection, cyclone tracking, and damage assessment with AI-powered early warning.",
     ],
   },
   {
-    label: "Data accessibility",
+    label: "Data Accessibility",
     values: [
       "Requires GIS expertise and high-bandwidth connectivity.",
       "Natural language queries over compressed embeddings — accessible even with limited connectivity.",
     ],
   },
   {
-    label: "Resource monitoring",
+    label: "Resource Monitoring",
     values: [
       "Periodic field surveys with limited geographic coverage.",
       "Continuous satellite-based monitoring of forests, reefs, mangroves, and water resources at scale.",
@@ -147,15 +147,305 @@ const references = [
     imageAlt="Earth Intelligence for the Pacific"
   />
 
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
+      <div
+        class="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm"
+      >
+        <div class="relative px-6 py-10 md:px-10 md:py-12">
+          <div class="relative mx-auto max-w-7xl">
+            <div
+              class="text-sm font-semibold uppercase tracking-[0.22em] text-primary mb-6"
+            >
+              Earth Observations Showcase
+            </div>
+
+            <div
+              id="eo-carousel"
+              class="relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              role="region"
+              aria-label="Earth Observations screenshot carousel"
+              tabindex="0"
+            >
+              <div
+                class="relative overflow-hidden rounded-2xl bg-background/50 h-[19.2rem] md:h-[26.9rem]"
+              >
+                <img
+                  id="eo-carousel-image"
+                  src="/eo1.png"
+                  alt="Earth Observations screenshot"
+                  class="h-full w-full object-contain transition-opacity duration-300"
+                />
+
+                <button
+                  id="eo-magnify-btn"
+                  type="button"
+                  class="absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-background/85 px-3 py-2 text-xs font-semibold text-foreground shadow-sm ring-1 ring-border transition-colors hover:bg-background"
+                  aria-label="View image fullscreen"
+                  aria-haspopup="dialog"
+                  aria-controls="eo-carousel-lightbox"
+                >
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 15l6 6m-2-7a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                  Fullscreen
+                </button>
+              </div>
+
+              <button
+                id="eo-prev-btn"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Previous slide"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button
+                id="eo-next-btn"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Next slide"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+
+              <div class="flex justify-center gap-2 mt-6">
+                {
+                  Array.from({ length: 4 }).map((_, i) => (
+                    <button
+                      class={`h-2 rounded-full transition-all duration-300 ${
+                        i === 0
+                          ? "bg-primary w-8"
+                          : "bg-primary/30 w-2 hover:bg-primary/50"
+                      }`}
+                      data-eo-slide={i}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))
+                }
+              </div>
+
+              <div
+                id="eo-carousel-lightbox"
+                class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 px-4"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Fullscreen carousel image"
+                tabindex="-1"
+              >
+                <button
+                  id="eo-close-lightbox-btn"
+                  type="button"
+                  class="absolute right-4 top-4 rounded-full bg-white/15 p-2 text-white transition-colors hover:bg-white/25"
+                  aria-label="Close fullscreen view"
+                >
+                  <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+
+                <img
+                  id="eo-lightbox-image"
+                  src="/eo1.png"
+                  alt="Fullscreen Earth Observations screenshot"
+                  class="max-h-[90vh] max-w-[95vw] object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    {
+      const eoSlideNames = ["/eo1.png", "/eo2.png", "/eo3.png", "/eo4.png"];
+      let eoCurrentSlide = 0;
+      const eoSlideButtons = Array.from(
+        document.querySelectorAll("[data-eo-slide]"),
+      );
+      const eoTotalSlides = eoSlideNames.length;
+      const eoCarousel = document.getElementById("eo-carousel");
+      const eoLightbox = document.getElementById("eo-carousel-lightbox");
+      const eoMagnifyButton = document.getElementById("eo-magnify-btn");
+
+      function isEditableTarget(target: EventTarget | null) {
+        if (!(target instanceof HTMLElement)) {
+          return false;
+        }
+        return (
+          target.isContentEditable ||
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement ||
+          target instanceof HTMLSelectElement
+        );
+      }
+
+      function updateEoCarousel() {
+        if (eoTotalSlides === 0) return;
+        if (eoCurrentSlide >= eoTotalSlides || eoCurrentSlide < 0) {
+          eoCurrentSlide = 0;
+        }
+        const slideSrc = eoSlideNames[eoCurrentSlide];
+        const img = document.getElementById(
+          "eo-carousel-image",
+        ) as HTMLImageElement;
+        img.src = slideSrc;
+        const lightboxImage = document.getElementById(
+          "eo-lightbox-image",
+        ) as HTMLImageElement | null;
+        if (lightboxImage) {
+          lightboxImage.src = slideSrc;
+        }
+        eoSlideButtons.forEach((btn, i) => {
+          btn.classList.toggle("bg-primary", i === eoCurrentSlide);
+          btn.classList.toggle("w-8", i === eoCurrentSlide);
+          btn.classList.toggle("bg-primary/30", i !== eoCurrentSlide);
+          btn.classList.toggle("w-2", i !== eoCurrentSlide);
+        });
+      }
+
+      function goToEoPreviousSlide() {
+        if (eoTotalSlides === 0) return;
+        eoCurrentSlide = (eoCurrentSlide - 1 + eoTotalSlides) % eoTotalSlides;
+        updateEoCarousel();
+      }
+
+      function goToEoNextSlide() {
+        if (eoTotalSlides === 0) return;
+        eoCurrentSlide = (eoCurrentSlide + 1) % eoTotalSlides;
+        updateEoCarousel();
+      }
+
+      function openEoLightbox() {
+        eoLightbox?.classList.remove("hidden");
+        eoLightbox?.classList.add("flex");
+        eoLightbox?.focus();
+      }
+
+      function closeEoLightbox() {
+        eoLightbox?.classList.add("hidden");
+        eoLightbox?.classList.remove("flex");
+        eoMagnifyButton?.focus();
+      }
+
+      document
+        .getElementById("eo-prev-btn")
+        ?.addEventListener("click", goToEoPreviousSlide);
+      document
+        .getElementById("eo-next-btn")
+        ?.addEventListener("click", goToEoNextSlide);
+
+      eoSlideButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          eoCurrentSlide = parseInt(
+            (e.currentTarget as HTMLElement).getAttribute("data-eo-slide") ||
+              "0",
+            10,
+          );
+          updateEoCarousel();
+        });
+      });
+
+      updateEoCarousel();
+
+      document
+        .getElementById("eo-magnify-btn")
+        ?.addEventListener("click", openEoLightbox);
+      document
+        .getElementById("eo-close-lightbox-btn")
+        ?.addEventListener("click", closeEoLightbox);
+
+      eoLightbox?.addEventListener("click", (e) => {
+        if (e.target === eoLightbox) {
+          closeEoLightbox();
+        }
+      });
+
+      eoCarousel?.addEventListener("keydown", (e) => {
+        if (isEditableTarget(e.target)) return;
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goToEoPreviousSlide();
+        }
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goToEoNextSlide();
+        }
+      });
+
+      eoLightbox?.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goToEoPreviousSlide();
+        }
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goToEoNextSlide();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          eoLightbox &&
+          !eoLightbox.classList.contains("hidden")
+        ) {
+          closeEoLightbox();
+        }
+      });
+    }
+  </script>
+
   <Features
-    tagline="Pacific applications"
+    tagline="Pacific Applications"
     title="AI-powered intelligence for Pacific priorities"
     subtitle="From climate adaptation to biodiversity conservation, Agentic Pacific delivers Earth Intelligence tailored to the unique challenges of Small Island Developing States. Drawing on platforms like Open Data Cube (ODC) and GEO's Global Observation Network, we make decades of satellite data actionable."
     features={pacificApplications}
   />
 
   <Content2
-    tagline="The technology"
+    tagline="The Technology"
     title="Earth embeddings: a new way of seeing"
     description={[
       "The World Economic Forum describes Earth embeddings as a paradigm shift — AI creates dense mathematical summaries from satellite imagery that are often less than 5% of the original size, yet capture meaning across space, time, and environmental concepts. Foundation models like Clay have demonstrated over 90% accuracy in classifying land use, detecting aquaculture, and estimating biomass.",
@@ -165,22 +455,22 @@ const references = [
     imageAlt="Earth embeddings and AI illustration"
     items={[
       {
-        title: "Land cover & deforestation tracking",
+        title: "Land Cover & Deforestation Tracking",
         description:
           "AI analyses satellite archives to detect changes in forest cover, agricultural land, and urban expansion in real-time — helping Pacific governments meet their commitments under the Paris Agreement and the Kunming-Montreal Biodiversity Framework.",
       },
       {
-        title: "Coastal resilience & marine resources",
+        title: "Coastal Resilience & Marine Resources",
         description:
           "Satellite-derived products including seagrass mapping, marine habitat classification, and bathymetry support fisheries management, coral reef conservation, and coastal infrastructure planning.",
       },
       {
-        title: "Water & natural resource management",
+        title: "Water & Natural Resource Management",
         description:
           "Monitor river flows, water quality, drought conditions, and watershed health using AI-driven synthesis of satellite, sensor, and community-sourced data — critical for Pacific food and water security.",
       },
       {
-        title: "Disaster risk reduction & early warning",
+        title: "Disaster Risk Reduction & Early Warning",
         description:
           "Integrate satellite data with local hydrological models to deliver early warning systems for floods, cyclones, and storm surges — aligned with the Sendai Framework and GEO's Early Warnings for All initiative.",
       },
@@ -196,7 +486,7 @@ const references = [
   />
 
   <ComparisonTable
-    tagline="Impact comparison"
+    tagline="Impact Comparison"
     title="Traditional approaches vs. AI-powered Earth Intelligence"
     subtitle="How Agentic Pacific transforms Earth observation workflows for Pacific stakeholders."
     headers={comparisonHeaders}
