@@ -104,6 +104,13 @@ const comparisonRows = [
     ],
   },
   {
+    label: "Memory",
+    values: [
+      "Can recall and reflect (learn) from prior interactions to maintain long-term context and continuity.",
+      "Typically lacks long-term memory and context retention. Can't learn from past interactions with users.",
+    ],
+  },
+  {
     label: "Verification",
     values: [
       "Direct citations with source documents and a visible audit trail.",
@@ -269,13 +276,13 @@ const references = [
               tabindex="0"
             >
               <div
-                class="relative overflow-hidden rounded-2xl bg-background/50 h-[30rem] md:h-[42rem]"
+                class="relative flex items-center justify-center overflow-hidden rounded-2xl bg-background/50 h-[30rem] md:h-[42rem]"
               >
                 <img
                   id="carousel-image"
                   src="/ss0.png"
                   alt="Platform screenshot"
-                  class="h-full w-full object-contain transition-opacity duration-300"
+                  class="absolute left-1/2 top-1/2 block h-auto w-auto max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 object-contain transition-opacity duration-300"
                 />
 
                 <button
@@ -304,7 +311,7 @@ const references = [
 
               <button
                 id="prev-btn"
-                class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-100 md:opacity-0 md:group-hover:opacity-100"
                 aria-label="Previous slide"
               >
                 <svg
@@ -323,7 +330,7 @@ const references = [
 
               <button
                 id="next-btn"
-                class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-0 group-hover:opacity-100"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground transition-all duration-200 opacity-100 md:opacity-0 md:group-hover:opacity-100"
                 aria-label="Next slide"
               >
                 <svg
@@ -397,158 +404,221 @@ const references = [
       </div>
 
       <script>
-        let currentSlide = 0;
-        const slideButtons = Array.from(
-          document.querySelectorAll("[data-slide]"),
-        );
-        const totalSlides = slideButtons.length;
-        const carousel = document.getElementById("legal-carousel");
-        const lightbox = document.getElementById("carousel-lightbox");
-        const magnifyButton = document.getElementById("magnify-btn");
+        {
+          const LEGAL_CAROUSEL_ABORT_KEY = "__legalCarouselAbortController";
+          const LEGAL_CAROUSEL_LIFECYCLE_KEY = "__legalCarouselLifecycleBound";
+          type LegalCarouselWindow = Window & {
+            [LEGAL_CAROUSEL_ABORT_KEY]?: AbortController;
+            [LEGAL_CAROUSEL_LIFECYCLE_KEY]?: boolean;
+          };
 
-        function isEditableTarget(target: EventTarget | null) {
-          if (!(target instanceof HTMLElement)) {
-            return false;
-          }
+          function isEditableTarget(target: EventTarget | null) {
+            if (!(target instanceof HTMLElement)) {
+              return false;
+            }
 
-          return (
-            target.isContentEditable ||
-            target instanceof HTMLInputElement ||
-            target instanceof HTMLTextAreaElement ||
-            target instanceof HTMLSelectElement
-          );
-        }
-
-        function updateCarousel() {
-          if (totalSlides === 0) {
-            return;
-          }
-
-          if (currentSlide >= totalSlides || currentSlide < 0) {
-            currentSlide = 0;
-          }
-
-          const img = document.getElementById(
-            "carousel-image",
-          ) as HTMLImageElement;
-          const slideSrc = `/ss${currentSlide}.png`;
-          img.src = slideSrc;
-
-          const lightboxImage = document.getElementById(
-            "lightbox-image",
-          ) as HTMLImageElement | null;
-          if (lightboxImage) {
-            lightboxImage.src = slideSrc;
-          }
-
-          slideButtons.forEach((btn, i) => {
-            btn.classList.toggle("bg-primary", i === currentSlide);
-            btn.classList.toggle("w-8", i === currentSlide);
-            btn.classList.toggle("bg-primary/30", i !== currentSlide);
-            btn.classList.toggle("w-2", i !== currentSlide);
-          });
-        }
-
-        function goToPreviousSlide() {
-          if (totalSlides === 0) {
-            return;
-          }
-          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-          updateCarousel();
-        }
-
-        function goToNextSlide() {
-          if (totalSlides === 0) {
-            return;
-          }
-          currentSlide = (currentSlide + 1) % totalSlides;
-          updateCarousel();
-        }
-
-        function openLightbox() {
-          lightbox?.classList.remove("hidden");
-          lightbox?.classList.add("flex");
-          lightbox?.focus();
-        }
-
-        function closeLightbox() {
-          lightbox?.classList.add("hidden");
-          lightbox?.classList.remove("flex");
-          magnifyButton?.focus();
-        }
-
-        document
-          .getElementById("prev-btn")
-          ?.addEventListener("click", goToPreviousSlide);
-
-        document
-          .getElementById("next-btn")
-          ?.addEventListener("click", goToNextSlide);
-
-        slideButtons.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            currentSlide = parseInt(
-              (e.currentTarget as HTMLElement).getAttribute("data-slide") ||
-                "0",
-              10,
+            return (
+              target.isContentEditable ||
+              target instanceof HTMLInputElement ||
+              target instanceof HTMLTextAreaElement ||
+              target instanceof HTMLSelectElement
             );
+          }
+
+          function initLegalCarousel() {
+            const legalWindow = window as LegalCarouselWindow;
+            const carousel = document.getElementById("legal-carousel");
+            if (!carousel) {
+              return;
+            }
+
+            const previousController = legalWindow[LEGAL_CAROUSEL_ABORT_KEY] as
+              | AbortController
+              | undefined;
+            previousController?.abort();
+
+            const controller = new AbortController();
+            const { signal } = controller;
+            legalWindow[LEGAL_CAROUSEL_ABORT_KEY] = controller;
+
+            let currentSlide = 0;
+            const slideButtons = Array.from(
+              carousel.querySelectorAll("[data-slide]"),
+            );
+            const totalSlides = slideButtons.length;
+            const lightbox = document.getElementById("carousel-lightbox");
+            const magnifyButton = document.getElementById("magnify-btn");
+            const image = document.getElementById(
+              "carousel-image",
+            ) as HTMLImageElement | null;
+            const lightboxImage = document.getElementById(
+              "lightbox-image",
+            ) as HTMLImageElement | null;
+            const prevButton = document.getElementById("prev-btn");
+            const nextButton = document.getElementById("next-btn");
+            const closeLightboxButton =
+              document.getElementById("close-lightbox-btn");
+
+            if (!image || !prevButton || !nextButton) {
+              return;
+            }
+
+            function updateCarousel() {
+              if (totalSlides === 0) {
+                return;
+              }
+
+              if (currentSlide >= totalSlides || currentSlide < 0) {
+                currentSlide = 0;
+              }
+
+              const slideSrc = `/ss${currentSlide}.png`;
+              if (image) {
+                image.src = slideSrc;
+              }
+
+              if (lightboxImage) {
+                lightboxImage.src = slideSrc;
+              }
+
+              slideButtons.forEach((btn, i) => {
+                btn.classList.toggle("bg-primary", i === currentSlide);
+                btn.classList.toggle("w-8", i === currentSlide);
+                btn.classList.toggle("bg-primary/30", i !== currentSlide);
+                btn.classList.toggle("w-2", i !== currentSlide);
+              });
+            }
+
+            function goToPreviousSlide() {
+              if (totalSlides === 0) {
+                return;
+              }
+              currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+              updateCarousel();
+            }
+
+            function goToNextSlide() {
+              if (totalSlides === 0) {
+                return;
+              }
+              currentSlide = (currentSlide + 1) % totalSlides;
+              updateCarousel();
+            }
+
+            function openLightbox() {
+              lightbox?.classList.remove("hidden");
+              lightbox?.classList.add("flex");
+              lightbox?.focus();
+            }
+
+            function closeLightbox() {
+              lightbox?.classList.add("hidden");
+              lightbox?.classList.remove("flex");
+              magnifyButton?.focus();
+            }
+
+            prevButton.addEventListener("click", goToPreviousSlide, {
+              signal,
+            });
+            nextButton.addEventListener("click", goToNextSlide, {
+              signal,
+            });
+
+            slideButtons.forEach((btn) => {
+              btn.addEventListener(
+                "click",
+                (e) => {
+                  currentSlide = parseInt(
+                    (e.currentTarget as HTMLElement).getAttribute(
+                      "data-slide",
+                    ) || "0",
+                    10,
+                  );
+                  updateCarousel();
+                },
+                { signal },
+              );
+            });
+
+            magnifyButton?.addEventListener("click", openLightbox, {
+              signal,
+            });
+            closeLightboxButton?.addEventListener("click", closeLightbox, {
+              signal,
+            });
+
+            lightbox?.addEventListener(
+              "click",
+              (e) => {
+                if (e.target === lightbox) {
+                  closeLightbox();
+                }
+              },
+              { signal },
+            );
+
+            carousel.addEventListener(
+              "keydown",
+              (e) => {
+                if (isEditableTarget(e.target)) {
+                  return;
+                }
+
+                if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  goToPreviousSlide();
+                }
+
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  goToNextSlide();
+                }
+              },
+              { signal },
+            );
+
+            lightbox?.addEventListener(
+              "keydown",
+              (e) => {
+                if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  goToPreviousSlide();
+                }
+
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  goToNextSlide();
+                }
+              },
+              { signal },
+            );
+
+            document.addEventListener(
+              "keydown",
+              (e) => {
+                if (
+                  e.key === "Escape" &&
+                  lightbox &&
+                  !lightbox.classList.contains("hidden")
+                ) {
+                  closeLightbox();
+                }
+              },
+              { signal },
+            );
+
             updateCarousel();
-          });
-        });
-
-        updateCarousel();
-
-        document
-          .getElementById("magnify-btn")
-          ?.addEventListener("click", openLightbox);
-
-        document
-          .getElementById("close-lightbox-btn")
-          ?.addEventListener("click", closeLightbox);
-
-        lightbox?.addEventListener("click", (e) => {
-          if (e.target === lightbox) {
-            closeLightbox();
-          }
-        });
-
-        carousel?.addEventListener("keydown", (e) => {
-          if (isEditableTarget(e.target)) {
-            return;
           }
 
-          if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            goToPreviousSlide();
+          const legalWindow = window as LegalCarouselWindow;
+          if (!legalWindow[LEGAL_CAROUSEL_LIFECYCLE_KEY]) {
+            document.addEventListener("astro:page-load", initLegalCarousel);
+            document.addEventListener("astro:after-swap", initLegalCarousel);
+            legalWindow[LEGAL_CAROUSEL_LIFECYCLE_KEY] = true;
           }
 
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            goToNextSlide();
-          }
-        });
-
-        lightbox?.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            goToPreviousSlide();
-          }
-
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            goToNextSlide();
-          }
-        });
-
-        document.addEventListener("keydown", (e) => {
-          if (
-            e.key === "Escape" &&
-            lightbox &&
-            !lightbox.classList.contains("hidden")
-          ) {
-            closeLightbox();
-          }
-        });
+          initLegalCarousel();
+        }
       </script>
 
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">

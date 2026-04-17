@@ -135,35 +135,51 @@ const sectorCards = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         <div>
           <p style="text-align: justify;" class="text-lg text-muted-foreground">
-            General cloud models from OpenAI, Google and Anthropic are suitable
-            for broad creative tasks, general-purpose assistance and quick,
-            broad-knowledge solutions without specialised data. <b
-              >Agentic Pacific</b
-            >
+            General cloud models from OpenAI, Google and Anthropic (Generative
+            AI) are suitable for broad creative tasks, general-purpose
+            assistance and quick, broad-knowledge solutions without specialised
+            data. <b>Agentic Pacific</b>
             solutions are built on custom-developed <b>Fine-Tuned Models</b> (SFT,
             LoRA, QLoRA). These are specialised, high-accuracy AI models adapted from
             a general base model using specific, often proprietary, datasets to excel
             at niche tasks (e.g. legal or financial analysis) or company-specific
-            behaviour and knowledge.
+            behaviour and knowledge. Our models have <b
+              >long-term contextual memory</b
+            >, can not only <b>recall</b>, but <b>reflect</b> and <b
+              >draw insights and observations</b
+            > from prior conversations, further enhancing <b
+              >institutional knowledge</b
+            > grounding and consistency across interactions.
           </p>
         </div>
-        <div class="flex justify-center">
+        <div class="flex flex-col items-center gap-4">
           <img
             src="/finetuning.png"
             alt="Cloud LLM models vs local fine-tuned models"
-            class="w-full max-w-4xl"
+            class="w-full max-w-4xl rounded-2xl border border-primary/30 bg-card p-2 shadow-2xl ring-1 ring-primary/10"
+          />
+          <img
+            src="/memory.png"
+            alt="Cloud LLM models vs local fine-tuned models"
+            class="w-full max-w-4xl rounded-2xl border border-primary/30 bg-card p-2 shadow-2xl ring-1 ring-primary/10"
           />
         </div>
         <div>
           <p style="text-align: justify;" class="text-lg text-muted-foreground">
             General models are broad, pre-trained and versatile but lack
-            specific expertise. Fine-tuning offers greater precision, lower
-            inference costs and behavioural control but is more expensive to
-            develop. Additionally, Agentic Pacific solutions implement
+            specific expertise. Fine-tuning offers greater precision and
+            behavioural control but is more expensive to develop. Additionally,
+            Agentic Pacific solutions implement
             <b>Retrieval-Augmented Generation (RAG)</b>, which is essential for
             enterprise AI applications. RAG bridges the gap between the static,
             generalised knowledge of large language models (LLMs) and the need
-            for accurate, up-to-date and private information.
+            for <b>accurate, up-to-date and private</b> information. Our solutions,
+            compared to generic AI assistants, can access and retrieve information
+            from specific, often proprietary, datasets (e.g. internal databases, records,
+            documents) to provide <b>contextually relevant and accurate</b> responses
+            grounded in the most current and relevant data. They can adapt to different
+            or changing situations and have "<b><u>agency</u></b>" to make
+            decisions based on context.
           </p>
         </div>
       </div>
