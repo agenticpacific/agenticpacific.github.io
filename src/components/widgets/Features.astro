@@ -45,9 +45,10 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
               <Icon name={feature.icon} class="w-6 h-6" />
             </div>
           )}
-          <h3 class="text-xl font-bold text-foreground mb-3">
-            {feature.title}
-          </h3>
+          <h3
+            class="text-xl font-bold text-foreground mb-3"
+            set:html={feature.title}
+          />
           <p class="text-muted-foreground text-sm">{feature.description}</p>
         </Card>
       ))
