@@ -21,15 +21,26 @@
   <circle cx="320" cy="267" r="16" fill="#22c55e"/>
   <circle cx="368" cy="267" r="16" fill="#0891b2" fill-opacity="0.85"/>
   <circle cx="416" cy="267" r="16" fill="#F8FAFC" fill-opacity="0.7"/>
-  <path d="M880 266C970 204 1114 210 1199 280C1282 349 1294 462 1227 540C1160 619 1036 650 936 622C835 594 756 505 760 410C764 351 803 303 880 266Z" fill="url(#orbit)" fill-opacity="0.24"/>
-  <path d="M882 353C951 311 1044 309 1112 347C1180 385 1222 460 1203 529C1184 597 1107 638 1024 648C933 660 837 636 783 570C729 505 726 408 782 365C812 342 847 332 882 353Z" stroke="url(#orbit)" stroke-width="16" stroke-linecap="round"/>
-  <rect x="260" y="520" width="530" height="140" rx="28" fill="rgba(2,6,23,0.46)" stroke="rgba(255,255,255,0.10)"/>
-  <rect x="840" y="520" width="460" height="54" rx="18" fill="rgba(255,255,255,0.07)"/>
-  <rect x="840" y="594" width="360" height="18" rx="9" fill="rgba(255,255,255,0.12)"/>
-  <rect x="840" y="626" width="280" height="18" rx="9" fill="rgba(255,255,255,0.08)"/>
-  <text x="260" y="396" fill="#F8FAFC" font-size="82" font-family="Arial, Helvetica, sans-serif" font-weight="700">FinTech Intelligence</text>
-  <text x="260" y="456" fill="#CBD5E1" font-size="34" font-family="Arial, Helvetica, sans-serif">Dark data into governed insight</text>
-  <text x="300" y="580" fill="#F8FAFC" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Sovereign deployment</text>
+  
+  <g transform="translate(390, 85) scale(0.8)">
+    <path d="M880 266C970 204 1114 210 1199 280C1282 349 1294 462 1227 540C1160 619 1036 650 936 622C835 594 756 505 760 410C764 351 803 303 880 266Z" fill="url(#orbit)" fill-opacity="0.24"/>
+    <path d="M882 353C951 311 1044 309 1112 347C1200 385 1222 460 1203 529C1184 597 1107 638 1024 648C933 660 837 636 783 570C729 505 726 408 782 365C812 342 847 332 882 353Z" stroke="url(#orbit)" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <rect x="260" y="520" width="660" height="140" rx="28" fill="rgba(2,6,23,0.46)" stroke="rgba(255,255,255,0.10)"/>
+  
+  
+  <text x="260" y="396" fill="#F8FAFC" font-size="76" font-family="Arial, Helvetica, sans-serif" font-weight="700">Finance Intelligence</text>
+  <text x="260" y="456" fill="#CBD5E1" font-size="24" font-family="Arial, Helvetica, sans-serif">Data-Enabled Insights, Predictive Intelligence, Powering Growth</text>
+  
+  <text x="300" y="580" fill="#F8FAFC" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Sovereign deployment, privacy focused</text>
   <text x="300" y="622" fill="#CBD5E1" font-size="24" font-family="Arial, Helvetica, sans-serif">Verified outputs, domain context, cloud-native delivery.</text>
-  <text x="840" y="500" fill="#E2E8F0" font-size="24" font-family="Arial, Helvetica, sans-serif">Operational model</text>
+  
+  <text x="1150" y="420" text-anchor="middle" fill="#E2E8F0" font-size="22" font-family="Arial, Helvetica, sans-serif">
+    <tspan x="1180" dy="0" text-anchor="middle">Built on </tspan>
+    <tspan x="1180" dy="26" font-weight="700" text-anchor="middle">Agentic Pacific's</tspan>
+    <tspan x="1180" dy="26" text-anchor="middle">Specialised</tspan>
+    <tspan x="1180" dy="26" text-anchor="middle">AI Models and Platform</tspan>
+  </text>
+
 </svg>
