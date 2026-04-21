@@ -68,7 +68,7 @@ const { container: containerClassProp = "" } = classes;
               variant={action.variant as "primary" | "secondary"}
               size="lg"
               aria-label={action.ariaLabel}
-              class="w-full sm:w-auto"
+              class={`w-full sm:w-auto ${action.class || ""}`}
             >
               {action.icon && (
                 <Icon name={action.icon} class="w-5 h-5 mr-2 -ml-1" />
