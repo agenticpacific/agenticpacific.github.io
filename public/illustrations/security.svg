@@ -1,0 +1,54 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="190" y1="150" x2="1410" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e" stop-opacity="0.22"/>
+      <stop offset="0.52" stop-color="#2563eb" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="760" y1="240" x2="1110" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22c55e"/>
+      <stop offset="0.55" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <circle cx="1270" cy="180" r="220" fill="#38bdf8" fill-opacity="0.10"/>
+  <circle cx="250" cy="760" r="210" fill="#22c55e" fill-opacity="0.10"/>
+  <circle cx="1090" cy="760" r="180" fill="#7c3aed" fill-opacity="0.12"/>
+  <rect x="180" y="150" width="1240" height="600" rx="40" fill="url(#panel)" stroke="rgba(255,255,255,0.18)"/>
+  <rect x="250" y="220" width="460" height="76" rx="38" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="312" cy="258" r="16" fill="#22c55e"/>
+  <circle cx="360" cy="258" r="16" fill="#38bdf8"/>
+  <circle cx="408" cy="258" r="16" fill="#f8fafc" fill-opacity="0.76"/>
+  
+  <rect x="250" y="505" width="980" height="160" rx="30" fill="rgba(2,6,23,0.48)" stroke="rgba(255,255,255,0.10)"/>
+  <rect x="1040" y="250" width="220" height="110" rx="26" fill="rgba(2,6,23,0.48)" stroke="rgba(255,255,255,0.12)"/>
+  
+  <circle cx="930" cy="445" r="170" stroke="url(#accent)" stroke-opacity="0.26" stroke-width="2"/>
+  <circle cx="930" cy="445" r="120" stroke="url(#accent)" stroke-opacity="0.36" stroke-width="2"/>
+  <circle cx="930" cy="445" r="72" stroke="url(#accent)" stroke-opacity="0.52" stroke-width="2"/>
+  
+  
+  <circle cx="1135" cy="305" r="14" fill="#22c55e"/>
+  <circle cx="1185" cy="305" r="14" fill="#38bdf8"/>
+  <circle cx="1235" cy="305" r="14" fill="#7c3aed"/>
+  <rect x="1072" y="392" width="176" height="14" rx="7" fill="rgba(248,250,252,0.18)"/>
+  <rect x="1072" y="426" width="132" height="14" rx="7" fill="rgba(248,250,252,0.12)"/>
+  <rect x="1125" y="574" width="170" height="14" rx="7" fill="rgba(248,250,252,0.18)"/>
+  <rect x="1125" y="610" width="120" height="14" rx="7" fill="rgba(248,250,252,0.12)"/>
+  <circle cx="1162" cy="486" r="10" fill="#22c55e"/>
+  <circle cx="1230" cy="525" r="10" fill="#38bdf8"/>
+  <circle cx="1086" cy="520" r="10" fill="#7c3aed"/>
+  <line x1="930" y1="370" x2="1135" y2="305" stroke="url(#accent)" stroke-opacity="0.52" stroke-width="3"/>
+  <line x1="1008" y1="520" x2="1230" y2="525" stroke="url(#accent)" stroke-opacity="0.48" stroke-width="3"/>
+  <line x1="840" y1="520" x2="1086" y2="520" stroke="url(#accent)" stroke-opacity="0.36" stroke-width="3"/>
+  
+  <text x="250" y="394" fill="#F8FAFC" font-size="82" font-family="Arial, Helvetica, sans-serif" font-weight="700">IT Systems Security</text>
+  <text x="250" y="454" fill="#CBD5E1" font-size="27" font-family="Arial, Helvetica, sans-serif">Attack-Surface Discovery, OSINT-Aligned Testing, Network Auditing</text>
+  <text x="292" y="572" fill="#F8FAFC" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Evidence-led Security Assessments and Recommendations</text>
+  <text x="292" y="614" fill="#CBD5E1" font-size="24" font-family="Arial, Helvetica, sans-serif">OWASP Discovery, ZAP, NMap, OpenVAS, and End-to-End Remediation Guidance.</text>
+  </svg>

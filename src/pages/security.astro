@@ -1,0 +1,321 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/widgets/Content.astro";
+import Features from "@/components/widgets/Features.astro";
+import Content2 from "@/components/widgets/Content2.astro";
+import Values from "@/components/widgets/Values.astro";
+import ComparisonTable from "@/components/sections/ComparisonTable.astro";
+import ReferenceLinks from "@/components/sections/ReferenceLinks.astro";
+
+const metadata = {
+  title: "AI-Enabled Security",
+  description:
+    "AI security, application testing, and attack-surface assessment for AI-enabled organisations using OWASP-aligned methods and open security tooling.",
+};
+
+const assessmentStack = [
+  {
+    title: "OSINT-driven exposure mapping",
+    description:
+      "We start with outside-in discovery using OSINT Framework workflows across Domain Name, IP and MAC Address, Cloud Infrastructure, Email Address, Public Records, and Compliance and Risk Intelligence sources.",
+    icon: "lucide:radar",
+  },
+  {
+    title: "Web and API testing with OWASP ZAP",
+    description:
+      "OWASP ZAP supports dynamic application security testing for web applications and APIs so broken access control, injection paths, weak session handling, and insecure flows are evidenced rather than guessed.",
+    icon: "lucide:globe",
+  },
+  {
+    title: "Network discovery with Nmap",
+    description:
+      "Nmap maps hosts, ports, services, versions, and operating system fingerprints to turn unknown infrastructure into an auditable asset and exposure inventory.",
+    icon: "lucide:network",
+  },
+  {
+    title: "Vulnerability validation with OpenVAS",
+    description:
+      "OpenVAS, the Greenbone Community Edition scan engine, executes a continuously updated feed of vulnerability tests so exposed services can be prioritized with evidence.",
+    icon: "lucide:shield",
+  },
+  {
+    title: "OWASP Top 10 2025 alignment",
+    description:
+      "Findings are grouped against current application risk themes such as Broken Access Control, Security Misconfiguration, Software Supply Chain Failures, Injection, and Security Logging and Alerting Failures.",
+    icon: "lucide:list-checks",
+  },
+  {
+    title: "Remediation and retest",
+    description:
+      "The output is a practical action list with proof, business impact, ownership, and retesting guidance so teams can move from finding to closure without translation overhead.",
+    icon: "lucide:wrench",
+  },
+];
+
+const faqItems = [
+  {
+    title: "Is this only about securing AI models?",
+    description:
+      "No. We cover both meanings of AI security: using AI to improve cyber defense and securing the AI systems, data, prompts, and integrations your organisation now depends on.",
+    icon: "lucide:bot",
+  },
+  {
+    title: "Why map findings to OWASP Top 10 2025?",
+    description:
+      "It gives engineering and leadership teams a current, widely understood application-risk language for prioritization, reporting, and remediation planning.",
+    icon: "lucide:triangle-alert",
+  },
+  {
+    title: "What does OSINT add to the assessment?",
+    description:
+      "OSINT shows what an external party can already infer about your domains, cloud footprint, exposed services, email patterns, and public-facing technology stack before any authenticated testing begins.",
+    icon: "lucide:search",
+  },
+  {
+    title: "How do ZAP, Nmap, and OpenVAS fit together?",
+    description:
+      "Nmap discovers the attack surface, ZAP probes web and API behavior, and OpenVAS validates broad vulnerability exposure. Together they create a more complete evidence chain than any single scanner alone.",
+    icon: "lucide:workflow",
+  },
+  {
+    title: "Can this be delivered in a private environment?",
+    description:
+      "Yes. Agentic Pacific can work in local-first and tightly controlled environments where evidence, logs, and system context need to remain under client control.",
+    icon: "lucide:lock-keyhole",
+  },
+  {
+    title: "What do clients receive at the end?",
+    description:
+      "A prioritized findings pack, technical evidence, risk narrative, remediation recommendations, and a path for retesting and continuous monitoring.",
+    icon: "lucide:file-check",
+  },
+];
+
+const comparisonRows = [
+  {
+    label: "Attack surface visibility",
+    values: [
+      "Outside-in discovery across internet-facing assets, cloud footprint, public data sources, and application endpoints.",
+      "Typically starts from an incomplete asset list and misses unknown or forgotten exposure.",
+    ],
+  },
+  {
+    label: "Testing depth",
+    values: [
+      "Combines recon, network discovery, dynamic web testing, and vulnerability validation in one assessment workflow.",
+      "Often relies on a single tool or a one-off point scan with limited context.",
+    ],
+  },
+  {
+    label: "Risk framing",
+    values: [
+      "Findings are mapped to OWASP Top 10 2025 themes and tied to concrete remediation priorities.",
+      "Raw scanner results are left for internal teams to interpret and triage.",
+    ],
+  },
+  {
+    label: "AI-specific governance",
+    values: [
+      "Addresses shadow AI, prompt and data exposure, model misuse paths, and application-layer controls around AI-enabled workflows.",
+      "Usually treats AI as out of scope or only as a policy issue.",
+    ],
+  },
+  {
+    label: "Evidence and verification",
+    values: [
+      "Each finding is supported by tool output, reproducible context, and a clear retest path.",
+      "Evidence is fragmented across screenshots, exports, and analyst notes.",
+    ],
+  },
+  {
+    label: "Deployment posture",
+    values: [
+      "Can be delivered in controlled, local-first environments with stronger data-handling discipline.",
+      "Often depends on external SaaS scanning and broader data exposure to third parties.",
+    ],
+  },
+];
+
+const references = [
+  {
+    label: "IBM - What is AI security?",
+    href: "https://www.ibm.com/think/topics/ai-security",
+    note: "Source material on AI security, securing AI deployments, threat detection, incident response, and best practices such as governance, monitoring, and integration with existing controls.",
+  },
+  {
+    label: "OWASP Top 10 2025",
+    href: "https://owasp.org/Top10/2025/",
+    note: "Current application security risk categories used here for assessment framing and remediation prioritization.",
+  },
+  {
+    label: "OSINT Framework",
+    href: "https://osintframework.com/",
+    note: "Reference point for external reconnaissance workflows spanning domains, IP intelligence, cloud infrastructure, email intelligence, public records, and risk intelligence.",
+  },
+  {
+    label: "OWASP ZAP",
+    href: "https://www.zaproxy.org/",
+    note: "Open-source web application scanner used for dynamic testing and automation of web and API security checks.",
+  },
+  {
+    label: "Nmap",
+    href: "https://nmap.org/",
+    note: "Open-source network discovery and security auditing utility for service enumeration, inventory, and exposure mapping.",
+  },
+  {
+    label: "OpenVAS Scanner",
+    href: "https://github.com/greenbone/openvas-scanner",
+    note: "Greenbone's open-source scan engine that runs a continuously updated vulnerability test feed.",
+  },
+];
+---
+
+
+
+  
+
+<BaseLayout {metadata}>
+<br/>
+    <h1
+      style="margin-top: -20px; margin-bottom: -50px;text-align: center;"
+      class="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent text-[3rem] font-extrabold tracking-tighter mb-4"
+    >
+      AI-Enabled Cyber Security and Risk Mitigation
+    </h1>
+  
+  
+  <Content
+    tagline="AI-Enabled Systems and Network Security"
+
+    
+    
+    description={[
+      "Agentic Pacific helps organisations secure both the enterprise and the AI systems now woven into day-to-day operations. That means reducing external exposure, validating application and API weaknesses, and tightening the controls around models, data, prompts, and integrations.",
+      "Using IBM's framing, AI security is not only about using AI to improve cyber defense. It is also about securing AI deployments themselves. We bring those two tracks together with evidence-led assessment, practical remediation, and local-first delivery where it matters.",
+    ]}
+    image="/illustrations/security.svg"
+    imageAlt="AI security illustration"
+  />
+
+  <Features
+    tagline="Why Act Now?"
+    title="Secure the stack, not just the symptoms"
+    subtitle="AI expands what defenders can automate, but it also expands the attack surface. The operating model has to cover both traditional application risk and the new failure modes introduced by AI adoption."
+    features={[
+      {
+        title: "Faster Detection and Response",
+        description:
+          "IBM reports that organisations with extensive security AI and automation identified and contained breaches 108 days faster on average, with average savings of USD 1.76 million in response costs.",
+        icon: "lucide:timer",
+        iconClass: "bg-blue-500/10 text-blue-400",
+      },
+      {
+        title: "Secure Data, Systems and Networks, with AI",
+        description:
+          "Security programs now have to account for prompt injection, shadow AI, model misuse, data poisoning, supply-chain risk, and drift alongside conventional cyber threats.",
+        icon: "lucide:shield",
+        iconClass: "bg-purple-500/10 text-purple-400",
+      },
+      {
+        title: "Governance that survives production",
+        description:
+          "Formal data governance, monitoring, alerting, and integration with existing security tooling are what separate a pilot from a defensible production deployment.",
+        icon: "lucide:shield-check",
+        iconClass: "bg-emerald-500/10 text-emerald-400",
+      },
+    ]}
+  />
+
+  <section class="reveal relative not-prose scroll-mt-[72px]">
+    <div
+      class="relative mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-3 md:px-6 md:py-12"
+    >
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">108 days</div>
+        <p class="mt-3 text-muted-foreground">
+          Faster average breach identification and containment reported by IBM
+          for organisations using extensive security AI and automation.
+        </p>
+      </div>
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">USD 1.76M</div>
+        <p class="mt-3 text-muted-foreground">
+          Average breach-cost savings associated with extensive security AI and
+          automation compared with organisations without those controls.
+        </p>
+      </div>
+      <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+        <div class="text-4xl font-bold text-primary">24%</div>
+        <p class="mt-3 text-muted-foreground">
+          IBM reports only a minority of current generative AI projects are
+          presently secured, which is why governance and validation now matter.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Content2
+    tagline="Assessment workflow"
+    title="From exposure discovery to verified remediation"
+    description={[
+      "The goal is not to throw tools at a target. It is to create a repeatable workflow that finds what is reachable, validates what is exploitable, and translates those results into work engineering teams can actually complete.",
+    ]}
+    image="/illustrations/security.svg"
+    imageAlt="AI security workflow illustration"
+    items={[
+      {
+        title: "Outside-in reconnaissance",
+        description:
+          "We begin with OSINT Framework-aligned discovery to understand domains, IP space, cloud assets, exposed identities, and public intelligence that an attacker can already see.",
+      },
+      {
+        title: "OWASP-aligned application testing",
+        description:
+          "Testing is grounded in the OWASP Top 10 2025, with specific attention to Broken Access Control, Security Misconfiguration, Software Supply Chain Failures, Injection, and Security Logging and Alerting Failures.",
+      },
+      {
+        title: "Service and network enumeration",
+        description:
+          "Nmap is used to identify reachable hosts, ports, service versions, and operating-system clues so teams know which systems are actually exposed and what they are running.",
+      },
+      {
+        title: "Vulnerability confirmation",
+        description:
+          "OWASP ZAP and OpenVAS provide dynamic web testing and vulnerability validation so findings are supported by reproducible technical evidence rather than assumptions.",
+      },
+    ]}
+  />
+
+  <Values
+    items={assessmentStack}
+    columns={3}
+    tagline="Assessment stack"
+    title="Open tools, evidence, and repeatable workflows"
+    subtitle="Agentic Pacific uses practical, widely adopted tooling so security work remains explainable, portable, and verifiable."
+  />
+
+  <ComparisonTable
+    tagline="Comparison"
+    title="Our Assessment vs Adhoc Security Testing"
+    subtitle="The difference is not just tool choice. It is whether discovery, testing, prioritization, and remediation are connected into one operating method."
+    headers={[
+      "Feature",
+      "Agentic Pacific's Security Workflow",
+      "AdHoc or Point-In-Time Testing",
+    ]}
+    rows={comparisonRows}
+  />
+
+  <Values
+    items={faqItems}
+    columns={3}
+    tagline="FAQ"
+    title="What security and technology teams usually ask"
+    subtitle="Most questions come down to scope, evidence quality, delivery posture, and how the outputs fit real remediation work."
+  />
+
+  <ReferenceLinks
+    links={references}
+    subtitle="These sources informed the framing of AI security, current application-security risk categories, and the open tooling referenced on this page."
+  />
+</BaseLayout>
