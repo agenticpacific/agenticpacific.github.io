@@ -10,6 +10,7 @@ export const siteConfig = {
   author: "Agentic Pacific",
   ogImage: ogImage,
   socialLinks: {
+    website: "https://agenticpacific.com.fj",
     github: "https://github.com/agenticpacific/",
     email: "mailto:agentic.pacific@icloud.com",
   },
