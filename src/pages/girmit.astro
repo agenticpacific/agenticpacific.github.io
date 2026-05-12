@@ -1,0 +1,347 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/ui/Button.astro";
+
+const metadata = {
+  title: "From Indenture to Diaspora",
+  description:
+    "A refined book information page for From Indenture to Diaspora, tracing the journey of the Fijian Girmitiyas through history, resilience, and identity.",
+  ignoreTitleTemplate: true,
+};
+
+const audienceHighlights = [
+  "For young readers, and whole families",
+  "Fiji's heritage and identity",
+  "Inter-generational historical storytelling",
+  "Life under indenture and beyond",
+];
+
+const bookThemes = [
+  {
+    title: "Origins of indenture",
+    description:
+      "A clear introduction to the indenture system and the long voyage that brought Indian labourers to Fiji.",
+  },
+  {
+    title: "Life under Girmit",
+    description:
+      "An accessible account of hardship, endurance, and the struggle for dignity and freedom.",
+  },
+  {
+    title: "Rebuilding community",
+    description:
+      "How families rebuilt their lives, formed new communities, and shaped modern Indo-Fijian society.",
+  },
+  {
+    title: "Lessons across generations",
+    description:
+      "Stories of courage, resilience, and identity carried forward across five generations.",
+  },
+];
+
+const bookFacts = [
+  {
+    label: "Ideal for",
+    value: "Students, families, and educators",
+  },
+  {
+    label: "Core focus",
+    value: "Girmit history, memory, and legacy",
+  },
+  {
+    label: "Tone",
+    value: "Accessible, respectful, and inspiring",
+  },
+];
+
+const previousBooks = [
+  {
+    title: "Living a Blissful Life",
+    subtitle: "Guided by Sanatana Principles",
+    image: "/rsingh/life.book.png",
+    alt: "Cover of Living a Blissful Life",
+  },
+  {
+    title: "Primary Education in Fiji",
+    subtitle: "A Guide for Effective Leadership",
+    image: "/rsingh/primary.education.book.png",
+    alt: "Cover of Primary Education in Fiji",
+  },
+];
+---
+
+<BaseLayout {metadata}>
+  <section class="relative overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(2,84,216,0.16),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(2,84,216,0.08),transparent_28%)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,430px)] lg:items-center">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center rounded-full border border-primary/15 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+            MAY 2026 RELEASE
+          </div>
+
+          <h1 class="mt-6 text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            From Indenture to Diaspora
+          </h1>
+          <p class="mt-4 text-lg font-medium text-primary sm:text-xl">
+            The Epic Journey of the Fijian Girmitiyas
+          </p>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+            Discover the remarkable story of the Girmitiyas, the indentured labourers who left India more than a century ago to build new lives in Fiji. Written especially for young readers, this book traces a journey from hardship and endurance to cultural continuity, community, and hope.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            {
+              audienceHighlights.map((item) => (
+                <span class="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-sm">
+                  {item}
+                </span>
+              ))
+            }
+          </div>
+
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Button href="#order" size="lg" aria-label="Go to ordering information">
+              Order Information
+            </Button>
+           
+          </div>
+
+          <div class="mt-10 grid gap-4 sm:grid-cols-3">
+            {
+              bookFacts.map((fact) => (
+                <div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <div class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    {fact.label}
+                  </div>
+                  <div class="mt-2 text-sm leading-6 text-foreground">
+                    {fact.value}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mx-auto w-full max-w-md lg:max-w-none">
+          <div class="rounded-[2rem] border border-border bg-card/95 p-4 shadow-xl shadow-primary/10 backdrop-blur-sm sm:p-6">
+            <div class="flex aspect-[3/4] items-center justify-center rounded-[1.5rem] bg-muted/40 p-4 shadow-2xl">
+              <img
+                src="/rsingh/cover.png"
+                alt="Cover of From Indenture to Diaspora"
+                class="h-full w-full object-contain"
+                loading="eager"
+              />
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-border bg-muted/50 p-5">
+              <div class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                Why this book matters
+              </div>
+              <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                A professionally written introduction to one of Fiji's most important historical and cultural journeys, designed to help younger generations understand legacy, belonging, and resilience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal relative">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+        <div class="rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-8">
+          <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            About the Book
+          </div>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            A thoughtful introduction to history, identity, and perseverance
+          </h2>
+          <p class="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
+            The book takes readers through the realities of indenture, the rebuilding of lives after Girmit, and the emergence of a vibrant Indo-Fijian community. It is written in a way that is approachable for students while still honoring the gravity and significance of the story.
+          </p>
+          <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-lg">
+            More than a historical summary, it is a tribute to the determination of people who endured displacement, hardship, and uncertainty, and whose descendants continue to shape modern Fiji.
+          </p>
+        </div>
+
+        <div class="rounded-[2rem] border border-border bg-muted/50 p-6 shadow-sm sm:p-8">
+          <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            At a Glance
+          </div>
+          <blockquote class="mt-4 text-2xl font-semibold leading-tight text-foreground">
+            "A powerful tribute to heritage, identity, and hope."
+          </blockquote>
+          <p class="mt-5 text-sm leading-7 text-muted-foreground sm:text-base">
+            The narrative connects the past to the present, helping readers see how historical struggle can shape family memory, cultural pride, and civic understanding today.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal relative">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <div class="max-w-3xl">
+        <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+          Inside the Book
+        </div>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          Key themes explored across the journey
+        </h2>
+        <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-lg">
+          Each section is designed to help readers understand not only what happened, but why the Girmitiyas' story remains essential to Fiji's national memory.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {
+          bookThemes.map((theme) => (
+            <div class="rounded-[1.75rem] border border-border bg-card p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-7">
+              <h3 class="text-xl font-semibold text-foreground">{theme.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                {theme.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal relative">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <div class="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start">
+        <div class="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm">
+          <img
+            src="/rsingh/rsingh.profile.png"
+            alt="Portrait of Dr. Rajendra Singh"
+            class="aspect-[4/5] w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-8">
+          <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            About the Author
+          </div>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Dr. Rajendra Singh
+          </h2>
+          <p class="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
+            Dr. Rajendra Singh, Member of the Order of Fiji and Commissioner for Oaths, is a distinguished educational leader, author, and community mentor. As the founder of Eduman Consultancy Services, he has been recognized with several prestigious honours, including the Public Service Commission Excellence Award and the Fiji National University Milestone Achiever Award.
+          </p>
+          <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-lg">
+            Through this book, Dr. Singh continues his work of educating, inspiring, and connecting younger generations to the enduring legacy of the Girmitiyas and the wider story of Fiji's social development.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal relative">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div class="max-w-3xl">
+          <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            Previous Books
+          </div>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            More titles by Dr. Rajendra Singh
+          </h2>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {
+          previousBooks.map((book) => (
+            <div class="rounded-[2rem] border border-border bg-card p-5 shadow-sm sm:p-6">
+              <div class="grid gap-5 sm:grid-cols-[180px_minmax(0,1fr)] sm:items-center">
+                <div class="mx-auto flex h-[17rem] w-[11.25rem] shrink-0 items-center justify-center rounded-2xl bg-muted/40 p-3 shadow-lg sm:h-[18rem] sm:w-[11.25rem]">
+                  <img
+                    src={book.image}
+                    alt={book.alt}
+                    class="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="text-center sm:text-left">
+                  <h3 class="text-2xl font-semibold text-foreground">{book.title}</h3>
+                  <p class="mt-2 text-base leading-7 text-muted-foreground">
+                    {book.subtitle}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="order" class="reveal relative scroll-mt-28">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+      <div class="rounded-[2rem] border border-border bg-card p-6 shadow-sm sm:p-8 lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)] lg:items-center">
+          <div>
+            <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+              Order the Book
+            </div>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Bring this story into homes, classrooms, and community spaces
+            </h2>
+            <p class="mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+              For purchase and ordering enquiries, please contact Dr. Rajendra Singh directly via Email of Phone. We are happy to assist with bulk orders for schools, libraries, and community organisations.
+            </p>
+          </div>
+
+          <div class="rounded-[1.75rem] border border-border bg-muted/50 p-6">
+            <div class="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              Contact Details
+            </div>
+            <div class="mt-5 space-y-4">
+              <div>
+                <div class="text-sm font-medium text-muted-foreground">Email</div>
+                <div class="mt-1 break-all text-base font-semibold text-foreground">
+                  rajendra.singh.hr[at]gmail.com
+                </div>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-muted-foreground">Phone</div>
+                <a
+                  href="tel:+6799249098"
+                  class="mt-1 inline-block text-base font-semibold text-foreground hover:text-primary"
+                >
+                  +679 924 9098
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              <Button
+                href="tel:+6799249098"
+                class="w-full"
+                aria-label="Call Dr Rajendra Singh"
+              >
+                Call Now
+              </Button>
+              <Button
+                href="#main-content"
+                variant="secondary"
+                class="w-full"
+                aria-label="Return to the top of the page"
+              >
+                Back to Top
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
