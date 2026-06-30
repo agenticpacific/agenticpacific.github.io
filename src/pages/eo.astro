@@ -299,15 +299,12 @@ const references = [
 
   <script>
     {
-      const eoSlideNames = ["/eo1.png", "/eo2.png", "/eo3.png", "/eo4.png"];
-      let eoCurrentSlide = 0;
-      const eoSlideButtons = Array.from(
-        document.querySelectorAll("[data-eo-slide]"),
-      );
-      const eoTotalSlides = eoSlideNames.length;
-      const eoCarousel = document.getElementById("eo-carousel");
-      const eoLightbox = document.getElementById("eo-carousel-lightbox");
-      const eoMagnifyButton = document.getElementById("eo-magnify-btn");
+      const EO_CAROUSEL_ABORT_KEY = "__eoCarouselAbortController";
+      const EO_CAROUSEL_LIFECYCLE_KEY = "__eoCarouselLifecycleBound";
+      type EoCarouselWindow = Window & {
+        [EO_CAROUSEL_ABORT_KEY]?: AbortController;
+        [EO_CAROUSEL_LIFECYCLE_KEY]?: boolean;
+      };
 
       function isEditableTarget(target: EventTarget | null) {
         if (!(target instanceof HTMLElement)) {
@@ -321,119 +318,188 @@ const references = [
         );
       }
 
-      function updateEoCarousel() {
-        if (eoTotalSlides === 0) return;
-        if (eoCurrentSlide >= eoTotalSlides || eoCurrentSlide < 0) {
-          eoCurrentSlide = 0;
+      function initEoCarousel() {
+        const eoWindow = window as EoCarouselWindow;
+        const carousel = document.getElementById("eo-carousel");
+        if (!carousel) {
+          return;
         }
-        const slideSrc = eoSlideNames[eoCurrentSlide];
-        const img = document.getElementById(
+
+        const previousController = eoWindow[EO_CAROUSEL_ABORT_KEY] as
+          | AbortController
+          | undefined;
+        previousController?.abort();
+
+        const controller = new AbortController();
+        const { signal } = controller;
+        eoWindow[EO_CAROUSEL_ABORT_KEY] = controller;
+
+        const eoSlideNames = ["/eo1.png", "/eo2.png", "/eo3.png", "/eo4.png"];
+        let currentSlide = 0;
+        const slideButtons = Array.from(
+          carousel.querySelectorAll("[data-eo-slide]"),
+        );
+        const totalSlides = eoSlideNames.length;
+        const lightbox = document.getElementById("eo-carousel-lightbox");
+        const magnifyButton = document.getElementById("eo-magnify-btn");
+        const image = document.getElementById(
           "eo-carousel-image",
-        ) as HTMLImageElement;
-        img.src = slideSrc;
+        ) as HTMLImageElement | null;
         const lightboxImage = document.getElementById(
           "eo-lightbox-image",
         ) as HTMLImageElement | null;
-        if (lightboxImage) {
-          lightboxImage.src = slideSrc;
+        const prevButton = document.getElementById("eo-prev-btn");
+        const nextButton = document.getElementById("eo-next-btn");
+        const closeLightboxButton = document.getElementById(
+          "eo-close-lightbox-btn",
+        );
+
+        if (!image || !prevButton || !nextButton) {
+          return;
         }
-        eoSlideButtons.forEach((btn, i) => {
-          btn.classList.toggle("bg-primary", i === eoCurrentSlide);
-          btn.classList.toggle("w-8", i === eoCurrentSlide);
-          btn.classList.toggle("bg-primary/30", i !== eoCurrentSlide);
-          btn.classList.toggle("w-2", i !== eoCurrentSlide);
-        });
-      }
 
-      function goToEoPreviousSlide() {
-        if (eoTotalSlides === 0) return;
-        eoCurrentSlide = (eoCurrentSlide - 1 + eoTotalSlides) % eoTotalSlides;
-        updateEoCarousel();
-      }
+        function updateCarousel() {
+          if (totalSlides === 0) {
+            return;
+          }
+          if (currentSlide >= totalSlides || currentSlide < 0) {
+            currentSlide = 0;
+          }
+          const slideSrc = eoSlideNames[currentSlide];
+          if (image) {
+            image.src = slideSrc;
+          }
+          if (lightboxImage) {
+            lightboxImage.src = slideSrc;
+          }
+          slideButtons.forEach((btn, i) => {
+            btn.classList.toggle("bg-primary", i === currentSlide);
+            btn.classList.toggle("w-8", i === currentSlide);
+            btn.classList.toggle("bg-primary/30", i !== currentSlide);
+            btn.classList.toggle("w-2", i !== currentSlide);
+          });
+        }
 
-      function goToEoNextSlide() {
-        if (eoTotalSlides === 0) return;
-        eoCurrentSlide = (eoCurrentSlide + 1) % eoTotalSlides;
-        updateEoCarousel();
-      }
+        function goToPreviousSlide() {
+          if (totalSlides === 0) {
+            return;
+          }
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateCarousel();
+        }
 
-      function openEoLightbox() {
-        eoLightbox?.classList.remove("hidden");
-        eoLightbox?.classList.add("flex");
-        eoLightbox?.focus();
-      }
+        function goToNextSlide() {
+          if (totalSlides === 0) {
+            return;
+          }
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateCarousel();
+        }
 
-      function closeEoLightbox() {
-        eoLightbox?.classList.add("hidden");
-        eoLightbox?.classList.remove("flex");
-        eoMagnifyButton?.focus();
-      }
+        function openLightbox() {
+          lightbox?.classList.remove("hidden");
+          lightbox?.classList.add("flex");
+          lightbox?.focus();
+        }
 
-      document
-        .getElementById("eo-prev-btn")
-        ?.addEventListener("click", goToEoPreviousSlide);
-      document
-        .getElementById("eo-next-btn")
-        ?.addEventListener("click", goToEoNextSlide);
+        function closeLightbox() {
+          lightbox?.classList.add("hidden");
+          lightbox?.classList.remove("flex");
+          magnifyButton?.focus();
+        }
 
-      eoSlideButtons.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          eoCurrentSlide = parseInt(
-            (e.currentTarget as HTMLElement).getAttribute("data-eo-slide") ||
-              "0",
-            10,
+        prevButton.addEventListener("click", goToPreviousSlide, { signal });
+        nextButton.addEventListener("click", goToNextSlide, { signal });
+
+        slideButtons.forEach((btn) => {
+          btn.addEventListener(
+            "click",
+            (e) => {
+              currentSlide = parseInt(
+                (e.currentTarget as HTMLElement).getAttribute(
+                  "data-eo-slide",
+                ) || "0",
+                10,
+              );
+              updateCarousel();
+            },
+            { signal },
           );
-          updateEoCarousel();
         });
-      });
 
-      updateEoCarousel();
+        magnifyButton?.addEventListener("click", openLightbox, { signal });
+        closeLightboxButton?.addEventListener("click", closeLightbox, {
+          signal,
+        });
 
-      document
-        .getElementById("eo-magnify-btn")
-        ?.addEventListener("click", openEoLightbox);
-      document
-        .getElementById("eo-close-lightbox-btn")
-        ?.addEventListener("click", closeEoLightbox);
+        lightbox?.addEventListener(
+          "click",
+          (e) => {
+            if (e.target === lightbox) {
+              closeLightbox();
+            }
+          },
+          { signal },
+        );
 
-      eoLightbox?.addEventListener("click", (e) => {
-        if (e.target === eoLightbox) {
-          closeEoLightbox();
-        }
-      });
+        carousel.addEventListener(
+          "keydown",
+          (e) => {
+            if (isEditableTarget(e.target)) {
+              return;
+            }
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              goToPreviousSlide();
+            }
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              goToNextSlide();
+            }
+          },
+          { signal },
+        );
 
-      eoCarousel?.addEventListener("keydown", (e) => {
-        if (isEditableTarget(e.target)) return;
-        if (e.key === "ArrowLeft") {
-          e.preventDefault();
-          goToEoPreviousSlide();
-        }
-        if (e.key === "ArrowRight") {
-          e.preventDefault();
-          goToEoNextSlide();
-        }
-      });
+        lightbox?.addEventListener(
+          "keydown",
+          (e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              goToPreviousSlide();
+            }
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              goToNextSlide();
+            }
+          },
+          { signal },
+        );
 
-      eoLightbox?.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft") {
-          e.preventDefault();
-          goToEoPreviousSlide();
-        }
-        if (e.key === "ArrowRight") {
-          e.preventDefault();
-          goToEoNextSlide();
-        }
-      });
+        document.addEventListener(
+          "keydown",
+          (e) => {
+            if (
+              e.key === "Escape" &&
+              lightbox &&
+              !lightbox.classList.contains("hidden")
+            ) {
+              closeLightbox();
+            }
+          },
+          { signal },
+        );
 
-      document.addEventListener("keydown", (e) => {
-        if (
-          e.key === "Escape" &&
-          eoLightbox &&
-          !eoLightbox.classList.contains("hidden")
-        ) {
-          closeEoLightbox();
-        }
-      });
+        updateCarousel();
+      }
+
+      const eoWindow = window as EoCarouselWindow;
+      if (!eoWindow[EO_CAROUSEL_LIFECYCLE_KEY]) {
+        document.addEventListener("astro:page-load", initEoCarousel);
+        document.addEventListener("astro:after-swap", initEoCarousel);
+        eoWindow[EO_CAROUSEL_LIFECYCLE_KEY] = true;
+      }
+
+      initEoCarousel();
     }
   </script>
 
