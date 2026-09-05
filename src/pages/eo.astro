@@ -72,7 +72,6 @@ const comparisonHeaders = [
   "Traditional Approach",
   "With Agentic Pacific AI",
 ];
-
 const comparisonRows = [
   {
     label: "Land Cover Analysis",
@@ -155,8 +154,8 @@ const references = [
       <span class="iconify" data-icon="lucide:earth" aria-hidden="true"></span>
       Explore Geospatial Platform
     </a>
-    
-     <a
+
+    <a
       href="https://agenticpacific.com.fj/platform-projects/lulc/"
       style="margin-left: 1rem;"
       class="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold bg-linear-to-r from-blue-600 to-green-500 text-white border-none shadow-lg hover:shadow-blue-500/35 transition-all"
@@ -171,13 +170,11 @@ const references = [
       class="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold bg-linear-to-r from-violet-600 to-cyan-500 text-white border-none shadow-lg hover:shadow-cyan-500/35 transition-all"
     >
       <span class="iconify" data-icon="lucide:earth" aria-hidden="true"></span>
-       SpatioTemporal Asset Catalog (STAC) API
+      SpatioTemporal Asset Catalog (STAC) API
     </a>
-   
-   
   </div>
 
-  <section class="reveal relative not-prose scroll-mt-[72px]">
+  <section class="reveal relative not-prose scroll-mt-[72px]" hidden>
     <div class="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
       <div
         class="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm"
@@ -340,6 +337,7 @@ const references = [
         if (!(target instanceof HTMLElement)) {
           return false;
         }
+
         return (
           target.isContentEditable ||
           target instanceof HTMLInputElement ||
@@ -392,9 +390,11 @@ const references = [
           if (totalSlides === 0) {
             return;
           }
+
           if (currentSlide >= totalSlides || currentSlide < 0) {
             currentSlide = 0;
           }
+
           const slideSrc = eoSlideNames[currentSlide];
           if (image) {
             image.src = slideSrc;
@@ -402,6 +402,7 @@ const references = [
           if (lightboxImage) {
             lightboxImage.src = slideSrc;
           }
+
           slideButtons.forEach((btn, i) => {
             btn.classList.toggle("bg-primary", i === currentSlide);
             btn.classList.toggle("w-8", i === currentSlide);
@@ -414,6 +415,7 @@ const references = [
           if (totalSlides === 0) {
             return;
           }
+
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
           updateCarousel();
         }
@@ -422,6 +424,7 @@ const references = [
           if (totalSlides === 0) {
             return;
           }
+
           currentSlide = (currentSlide + 1) % totalSlides;
           updateCarousel();
         }
@@ -429,28 +432,25 @@ const references = [
         function openLightbox() {
           lightbox?.classList.remove("hidden");
           lightbox?.classList.add("flex");
+          document.body.style.overflow = "hidden";
           lightbox?.focus();
         }
 
         function closeLightbox() {
           lightbox?.classList.add("hidden");
           lightbox?.classList.remove("flex");
+          document.body.style.overflow = "";
           magnifyButton?.focus();
         }
 
         prevButton.addEventListener("click", goToPreviousSlide, { signal });
         nextButton.addEventListener("click", goToNextSlide, { signal });
 
-        slideButtons.forEach((btn) => {
+        slideButtons.forEach((btn, i) => {
           btn.addEventListener(
             "click",
-            (e) => {
-              currentSlide = parseInt(
-                (e.currentTarget as HTMLElement).getAttribute(
-                  "data-eo-slide",
-                ) || "0",
-                10,
-              );
+            () => {
+              currentSlide = i;
               updateCarousel();
             },
             { signal },
@@ -464,8 +464,8 @@ const references = [
 
         lightbox?.addEventListener(
           "click",
-          (e) => {
-            if (e.target === lightbox) {
+          (event) => {
+            if (event.target === lightbox) {
               closeLightbox();
             }
           },
@@ -474,17 +474,28 @@ const references = [
 
         carousel.addEventListener(
           "keydown",
-          (e) => {
-            if (isEditableTarget(e.target)) {
+          (event) => {
+            if (isEditableTarget(event.target)) {
               return;
             }
-            if (e.key === "ArrowLeft") {
-              e.preventDefault();
+
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
               goToPreviousSlide();
             }
-            if (e.key === "ArrowRight") {
-              e.preventDefault();
+
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
               goToNextSlide();
+            }
+
+            if (event.key === "Enter" || event.key === " ") {
+              if (event.target === magnifyButton) {
+                return;
+              }
+
+              event.preventDefault();
+              openLightbox();
             }
           },
           { signal },
@@ -492,13 +503,14 @@ const references = [
 
         lightbox?.addEventListener(
           "keydown",
-          (e) => {
-            if (e.key === "ArrowLeft") {
-              e.preventDefault();
+          (event) => {
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
               goToPreviousSlide();
             }
-            if (e.key === "ArrowRight") {
-              e.preventDefault();
+
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
               goToNextSlide();
             }
           },
@@ -507,9 +519,9 @@ const references = [
 
         document.addEventListener(
           "keydown",
-          (e) => {
+          (event) => {
             if (
-              e.key === "Escape" &&
+              event.key === "Escape" &&
               lightbox &&
               !lightbox.classList.contains("hidden")
             ) {
